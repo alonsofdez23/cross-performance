@@ -36,4 +36,14 @@ class Clase extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the entreno that owns the Clase
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function entreno()
+    {
+        return $this->belongsTo(Entreno::class);
+    }
 }
