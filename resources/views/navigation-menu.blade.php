@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     @role('admin')
-                        <x-jet-nav-link href="">
+                        <x-jet-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
                             Entrenos
                         </x-jet-nav-link>
                     @endrole
@@ -145,6 +145,11 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            @role('admin')
+                <x-jet-responsive-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
+                    Entrenos
+                </x-jet-responsive-nav-link>
+            @endrole
         </div>
 
         <!-- Responsive Settings Options -->
