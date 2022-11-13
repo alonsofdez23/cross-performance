@@ -26,6 +26,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
 
-Route::resource('entrenos', EntrenoController::class);
+    Route::resource('entrenos', EntrenoController::class);
+});

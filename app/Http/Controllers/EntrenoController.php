@@ -15,7 +15,7 @@ class EntrenoController extends Controller
     public function index()
     {
         return view('entrenos.index', [
-            'entrenos' => Entreno::all(),
+            'entrenos' => Entreno::all()->sortBy('id'),
         ]);
     }
 
@@ -37,9 +37,11 @@ class EntrenoController extends Controller
      */
     public function store(Request $request)
     {
-        Entreno::create($request->all());
+        $entreno = new Entreno($request->all());
+        $entreno->save();
 
-        return redirect()->route('entrenos.index');
+        return redirect()->route('entrenos.index')
+            ->with('success', "Entreno $entreno->denominacion creado correctamente");
     }
 
     /**
@@ -77,7 +79,11 @@ class EntrenoController extends Controller
      */
     public function update(Request $request, Entreno $entreno)
     {
+        $entreno->fill($request->all());
+        $entreno->save();
 
+        return redirect()->route('entrenos.index')
+            ->with('success', "Entreno $entreno->denominacion editado correctamente");
     }
 
     /**
@@ -90,6 +96,7 @@ class EntrenoController extends Controller
     {
         $entreno->delete();
 
-        return redirect()->route('entrenos.index');
+        return redirect()->route('entrenos.index')
+            ->with('success', "Entreno $entreno->denominacion borrado correctamente");
     }
 }
