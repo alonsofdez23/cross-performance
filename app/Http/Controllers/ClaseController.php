@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClaseController extends Controller
 {
@@ -14,7 +15,9 @@ class ClaseController extends Controller
      */
     public function index()
     {
-        //
+        return view('clases.index', [
+            'clases' => Clase::all()->sortBy('fecha_hora'),
+        ]);
     }
 
     /**
@@ -81,5 +84,25 @@ class ClaseController extends Controller
     public function destroy(Clase $clase)
     {
         //
+    }
+
+    public function join(Clase $clase)
+    {
+        $clase->atletas()->attach(Auth::id());
+
+        $clase->vacantes = $clase->vacantes -1;
+        $clase->save();
+
+        return redirect()->route('clases.index');
+    }
+
+    public function leave(Clase $clase)
+    {
+        $clase->atletas()->detach(Auth::id());
+
+        $clase->vacantes = $clase->vacantes +1;
+        $clase->save();
+
+        return redirect()->route('clases.index');
     }
 }

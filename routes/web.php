@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EntrenoController;
+use App\Http\Controllers\ClaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,11 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('entrenos', EntrenoController::class);
+
+    Route::resource('clases', ClaseController::class);
+
+    Route::post('/clases/join/{clase}', [ClaseController::class, 'join'])
+        ->name('clases.join');
+    Route::post('/clases/leave/{clase}', [ClaseController::class, 'leave'])
+        ->name('clases.leave');
 });
