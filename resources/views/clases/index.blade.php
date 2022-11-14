@@ -67,7 +67,7 @@
                                             </svg>
                                         </button>
                                     </form>
-                                @elseif ($clase->atletas->contains(Auth::user()) && $clase->vacantes != 0)
+                                @elseif ($clase->atletas->contains(Auth::user()))
                                     <form action="{{ route('clases.leave', $clase) }}" method="POST">
                                         @csrf
                                         @method('POST')
