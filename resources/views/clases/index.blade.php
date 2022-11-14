@@ -57,13 +57,7 @@
                             </li>
 
                             <div class="flex ml-6 mb-6 pb-4 rounded-md" role="group">
-                                @if ($clase->vacantes == 0)
-                                    <button type="button" class="inline-flex items-center cursor-not-allowed py-2 px-4 text-sm font-medium text-gray-900 bg-red-100 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
-                                        <svg aria-hidden="true" class="w-4 h-4 text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                        </svg>
-                                    </button>
-                                @elseif (!$clase->atletas->contains(Auth::user()))
+                                @if (!$clase->atletas->contains(Auth::user()) && $clase->vacantes != 0)
                                     <form action="{{ route('clases.join', $clase) }}" method="POST">
                                         @csrf
                                         @method('POST')
@@ -73,7 +67,7 @@
                                             </svg>
                                         </button>
                                     </form>
-                                @else
+                                @elseif ($clase->atletas->contains(Auth::user()) && $clase->vacantes != 0)
                                     <form action="{{ route('clases.leave', $clase) }}" method="POST">
                                         @csrf
                                         @method('POST')
@@ -83,6 +77,12 @@
                                             </svg>
                                         </button>
                                     </form>
+                                @else
+                                    <button type="button" class="inline-flex items-center cursor-not-allowed py-2 px-4 text-sm font-medium text-gray-900 bg-red-100 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
+                                        <svg aria-hidden="true" class="w-4 h-4 text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                        </svg>
+                                    </button>
                                 @endif
 
                                 {{-- <button type="button" class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-2 focus:ring-gray-700 focus:text-gray-700">
