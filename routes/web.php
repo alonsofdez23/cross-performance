@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EntrenoController;
+use App\Http\Controllers\ClaseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware([
@@ -28,4 +29,18 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('entrenos', EntrenoController::class);
+
+    Route::resource('clases', ClaseController::class);
+
+    Route::post('/clases/join/{clase}', [ClaseController::class, 'join'])
+        ->name('clases.join');
+    Route::post('/clases/leave/{clase}', [ClaseController::class, 'leave'])
+        ->name('clases.leave');
+
+    Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])
+        ->name('clases.addentreno');
+    Route::post('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntrenoUpdate'])
+        ->name('clases.addentreno.update');
+    Route::post('/clases/{clase}/deleteEntreno', [ClaseController::class, 'deleteEntrenoUpdate'])
+        ->name('clases.deleteentreno.update');
 });

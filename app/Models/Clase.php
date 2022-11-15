@@ -11,6 +11,10 @@ class Clase extends Model
 
     protected $table = 'clases';
 
+    protected $casts = [
+        'fecha_hora' => 'datetime',
+    ];
+
     protected $fillable = [
         'monitor_id',
         'fecha_hora',
