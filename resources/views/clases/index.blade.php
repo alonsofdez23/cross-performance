@@ -50,9 +50,9 @@
                                     @foreach ($clase->atletas as $atleta)
                                         <div><img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}"></div>
                                     @endforeach
-                                    @for ($i = 0; $i < $clase->vacantes; $i++)
+                                    {{-- @for ($i = 0; $i < $clase->vacantes; $i++)
                                         <div><img class="rounded-2xl" src="https://ui-avatars.com/api/?background=bbf7d0&color=bbf7d0&size=512" alt="libre"></div>
-                                    @endfor
+                                    @endfor --}}
                                 </div>
                             </li>
 
