@@ -33,17 +33,32 @@
                                 <span class="flex absolute -left-4 justify-center items-center w-8 h-8 bg-gray-200 rounded-full ring-8 ring-white">
                                     <svg aria-hidden="true" class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                                 </span>
-                                <h3 class="flex items-center ml-2 mb-1 text-xl font-semibold text-gray-900">{{ $clase->fecha_hora->tz('Europe/Madrid')->toTimeString() }} <span class="
+                                <h3 class="flex items-center ml-2 mb-1 text-xl font-semibold text-gray-900">{{ $clase->fecha_hora->tz('Europe/Madrid')->toTimeString() }}
                                     @if (!$clase->vacantes == 0)
-                                        bg-green-100 text-green-800
+                                        <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-green-800 bg-green-200 rounded-md">
+                                            Plazas disponibles
+                                            <span class="inline-flex justify-center items-center ml-2 w-5 h-5 text-base font-semibold text-green-200 bg-green-800 rounded-md">
+                                            {{ $clase->vacantes }}
+                                            </span>
+                                        </button>
                                     @else
-                                        bg-red-100 text-red-800
+                                        <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-red-800 bg-red-200 rounded-md">
+                                            Plazas disponibles
+                                            <span class="inline-flex justify-center items-center ml-2 w-5 h-5 text-base font-semibold text-red-200 bg-red-800 rounded-md">
+                                            {{ $clase->vacantes }}
+                                            </span>
+                                        </button>
                                     @endif
-                                        text-base font-medium mr-2 px-2.5 py-0.5 rounded ml-3">{{ $clase->vacantes }}</span>
+
                                     @if ($clase->entreno != null)
-                                        <a href="{{ route('entrenos.show', $clase->entreno) }}" class="text-base font-medium mr-2 px-2.5 py-0.5 rounded ml-3">
+                                    <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-200 bg-gray-500 rounded-md">
+                                        <a href="{{ route('entrenos.show', $clase->entreno) }}">
                                             Entreno
                                         </a>
+                                    </button>
+                                        {{-- <a href="{{ route('entrenos.show', $clase->entreno) }}" class="text-base font-medium mr-2 px-2.5 py-0.5 rounded ml-3">
+                                            Entreno
+                                        </a> --}}
                                     @endif
                                 </h3>
                                 <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
