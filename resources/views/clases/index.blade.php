@@ -61,8 +61,8 @@
                                     <form action="{{ route('clases.join', $clase) }}" method="POST">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-green-100 rounded-md border border-gray-200 hover:bg-green-200 hover:text-gray-700 focus:bg-green-400">
-                                            <svg aria-hidden="true" class="w-4 h-4 fill-current text-green-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <button type="submit" class="inline-flex items-center py-2 px-4 text-base font-medium text-gray-900 bg-green-100 rounded-md border border-gray-200 hover:bg-green-200 hover:text-gray-700 focus:bg-green-400">
+                                            <svg aria-hidden="true" class="w-5 h-5 fill-current text-green-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                                             </svg>
                                         </button>
@@ -71,15 +71,15 @@
                                     <form action="{{ route('clases.leave', $clase) }}" method="POST">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-red-100 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700 focus:bg-red-400">
-                                            <svg aria-hidden="true" class="w-4 h-4 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <button type="submit" class="inline-flex items-center py-2 px-4 text-base font-medium text-gray-900 bg-red-100 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700 focus:bg-red-400">
+                                            <svg aria-hidden="true" class="w-5 h-5 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                                             </svg>
                                         </button>
                                     </form>
                                 @else
-                                    <button type="button" class="inline-flex items-center cursor-not-allowed py-2 px-4 text-sm font-medium text-gray-900 bg-red-100 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
-                                        <svg aria-hidden="true" class="w-4 h-4 text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <button type="button" class="inline-flex items-center cursor-not-allowed py-2 px-4 text-base font-medium text-gray-900 bg-red-100 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
+                                        <svg aria-hidden="true" class="w-5 h-5 text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                                         </svg>
                                     </button>
