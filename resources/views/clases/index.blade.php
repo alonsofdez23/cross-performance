@@ -53,13 +53,41 @@
                                     @if ($clase->entreno != null)
                                     <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-200 bg-gray-500 rounded-md">
                                         <a href="{{ route('entrenos.show', $clase->entreno) }}">
-                                            Entreno
+                                            Entrenamiento
                                         </a>
                                     </button>
-                                        {{-- <a href="{{ route('entrenos.show', $clase->entreno) }}" class="text-base font-medium mr-2 px-2.5 py-0.5 rounded ml-3">
-                                            Entreno
-                                        </a> --}}
                                     @endif
+
+                                    @role('admin')
+                                    @if ($clase->entreno_id == null)
+                                        <form action="{{ route('clases.addentreno', $clase) }}" method="GET">
+                                            @csrf
+                                            @method('GET')
+                                            <button type="submit" class="inline-flex items-center ml-4 py-2 px-4 text-sm font-medium text-gray-900 bg-green-100 rounded-md border border-gray-200 hover:bg-green-200 hover:text-gray-700 focus:bg-green-400">
+                                                <svg aria-hidden="true" class="w-5 h-5 fill-current text-green-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                                </svg>
+                                                <span class="inline-flex items-center ml-1 text-sm text-center text-green-800">
+                                                    Añadir entrenamiento
+                                                </span>
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('clases.deleteentreno.update', $clase) }}" method="POST">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit" class="inline-flex items-center ml-4 py-2 px-3 text-sm font-medium text-gray-900 bg-red-100 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700 focus:bg-red-400">
+                                                <svg aria-hidden="true" class="w-5 h-5 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                                                </svg>
+                                                <span class="inline-flex items-center ml-1 text-sm text-center text-red-800">
+                                                    Eliminar entrenamiento
+                                                </span>
+                                            </button>
+                                        </form>
+                                    @endif
+                                    @endrole
+
                                 </h3>
                                 <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
                                     @foreach ($clase->atletas as $atleta)

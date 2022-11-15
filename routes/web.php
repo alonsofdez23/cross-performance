@@ -36,4 +36,11 @@ Route::middleware([
         ->name('clases.join');
     Route::post('/clases/leave/{clase}', [ClaseController::class, 'leave'])
         ->name('clases.leave');
+
+    Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])
+        ->name('clases.addentreno');
+    Route::post('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntrenoUpdate'])
+        ->name('clases.addentreno.update');
+    Route::post('/clases/{clase}/deleteEntreno', [ClaseController::class, 'deleteEntrenoUpdate'])
+        ->name('clases.deleteentreno.update');
 });
