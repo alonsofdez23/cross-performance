@@ -27,13 +27,46 @@
             <div class="grid grid-cols-1 gap-y-10 gap-x-6 xl:gap-x-8">
                 <!-- Selector de días -->
                 <div class="flex justify-between">
-                    <div><------- Día atrás</div>
-                    <div>Selector día</div>
-                    <div>Día adelante -------></div>
+                    <div>
+                        <input wire:model="pickDay" type="search" name="" id="">
+                    </div>
+                    <div>
+                        <x-jet-button wire:click="dayBack">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+                            </svg>
+                        </x-jet-button>
+                    </div>
+                    <div>
+                        <x-datetime-picker
+                            without-tips="false"
+                            without-time="true"
+                            placeholder="Seleciona día"
+                            wire:model="pickDay"
+                        />
+                    </div>
+                    <div>
+                        <x-jet-button wire:click="dayForward">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                            </svg>
+                        </x-jet-button>
+                    </div>
                 </div>
+
+                <!-- Clase vacía -->
+                @if ($clases->isEmpty())
+                    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+                        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                            <span class="block">Día de descanso.</span>
+                            <a class="block text-gray-400">Tómate un respiro.</span>
+                        </h2>
+                    </div>
+                @endif
 
                 <!-- Lista de clases -->
                 <ol class="relative border-l border-gray-500">
+
                     @foreach ($clases as $clase)
                         <li class="mb-10 ml-6">
                             <span class="flex absolute -left-4 justify-center items-center w-8 h-8 bg-gray-200 rounded-full ring-8 ring-white">
