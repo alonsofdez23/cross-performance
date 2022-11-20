@@ -25,6 +25,12 @@
             @endif
 
             <div class="grid grid-cols-1 gap-y-10 gap-x-6 xl:gap-x-8">
+                <!-- Selector de días -->
+                <div class="flex justify-between">
+                    <div><------- Día atrás</div>
+                    <div>Selector día</div>
+                    <div>Día adelante -------></div>
+                </div>
 
                 <!-- Lista de clases -->
                 <ol class="relative border-l border-gray-500">

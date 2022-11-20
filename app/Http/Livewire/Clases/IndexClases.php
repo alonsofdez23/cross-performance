@@ -26,7 +26,8 @@ class IndexClases extends Component
 
     public function render()
     {
-        $clases = Clase::all()->sortBy('fecha_hora');
+        $clases = Clase::whereDay('fecha_hora', 14)->get()
+            ->sortBy('fecha_hora');
 
         return view('livewire.clases.index-clases', [
             'clases' => $clases,
