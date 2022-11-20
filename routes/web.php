@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\EntrenoController;
 use App\Http\Controllers\ClaseController;
+use App\Http\Livewire\Clases\IndexClases;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\IndexClases;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Clases;
 
 use App\Models\Clase;
 use Livewire\Component;
@@ -28,7 +28,7 @@ class IndexClases extends Component
     {
         $clases = Clase::all()->sortBy('fecha_hora');
 
-        return view('livewire.index-clases', [
+        return view('livewire.clases.index-clases', [
             'clases' => $clases,
         ]);
     }
