@@ -26,6 +26,7 @@
 
             <div class="grid grid-cols-1 gap-y-10 gap-x-6 xl:gap-x-8">
 
+                <!-- Lista de clases -->
                 <ol class="relative border-l border-gray-500">
                     @foreach ($clases as $clase)
                         <li class="mb-10 ml-6">
@@ -33,6 +34,8 @@
                                 <svg aria-hidden="true" class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                             </span>
                             <h3 class="flex items-center ml-2 mb-1 text-xl font-semibold text-gray-900">{{ $clase->fecha_hora->tz('Europe/Madrid')->toTimeString() }}
+
+                                <!-- Plazas disponibles -->
                                 @if (!$clase->vacantes == 0)
                                     <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-green-800 bg-green-200 rounded-md">
                                         Plazas disponibles
@@ -49,6 +52,7 @@
                                     </button>
                                 @endif
 
+                                <!-- Entrenamiento -->
                                 @if ($clase->entreno != null)
                                 <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-200 bg-gray-500 rounded-md">
                                     <a href="{{ route('entrenos.show', $clase->entreno) }}">
@@ -88,6 +92,8 @@
                                 @endrole
 
                             </h3>
+
+                            <!-- Lista de atletas en clase -->
                             <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
                                 @foreach ($clase->atletas as $atleta)
                                     <div><img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}"></div>
@@ -98,6 +104,7 @@
                             </div>
                         </li>
 
+                        <!-- Join/leave de clase -->
                         <div class="flex ml-6 mb-6 pb-4 rounded-md" role="group">
                             @if (!$clase->atletas->contains(Auth::user()) && $clase->vacantes != 0)
                                     <button wire:click="join({{ $clase->id }})" type="submit" class="inline-flex items-center py-2 px-4 text-base font-medium text-gray-900 bg-green-200 rounded-md border border-gray-200 hover:bg-green-300 hover:text-gray-700">
