@@ -167,6 +167,27 @@
                                 Settings
                             </button> --}}
 
+                            @if ($clase->vacantes != 0)
+                                @role('admin')
+                                    <form wire:submit="submit({{ $clase->id }})" class="flex">
+                                        <div class="grid grid-cols-1 ml-4 sm:grid-cols-2 gap-5 sm:max-w-lg">
+                                            <x-select
+                                                placeholder="Selecciona atleta"
+                                                wire:model.defer="atleta"
+                                                >
+                                                @foreach ($users->diff($clase->atletas) as $atleta)
+                                                    <x-select.user-option src="{{ $atleta->profile_photo_url }}" label="{{ $atleta->name }}" value="{{ $atleta->id }}" />
+                                                @endforeach
+                                            </x-select>
+                                        </div>
+
+                                        <button type="submit">
+                                            Apuntar a la clase
+                                        </button>
+                                    </form>
+                                @endrole
+                            @endif
+
                         </div>
                     @endforeach
                 </ol>

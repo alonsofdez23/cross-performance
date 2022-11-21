@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Clases;
 
 use App\Models\Clase;
+use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -10,10 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class IndexClases extends Component
 {
     public $pickDay;
+    public $atleta;
 
     public function mount()
     {
-        $this->pickDay = Carbon::now()->tz('Europe/Madrid');
+        $this->pickDay = '2022-11-14';//Carbon::now()->tz('Europe/Madrid');
     }
 
     public function dayBack()
@@ -50,6 +52,14 @@ class IndexClases extends Component
         $clase->save();
     }
 
+    public function submit(Clase $clase)
+    {
+        $clase->atletas()->attach($this->atleta);
+
+        $clase->vacantes = $clase->vacantes -1;
+        $clase->save();
+    }
+
     public function render()
     {
         $clases = Clase::whereDate('fecha_hora', $this->pickDay)->get()
@@ -57,6 +67,7 @@ class IndexClases extends Component
 
         return view('livewire.clases.index-clases', [
             'clases' => $clases,
+            'users' => User::all(),
         ]);
     }
 }
