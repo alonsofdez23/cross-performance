@@ -74,7 +74,10 @@
                                 <!-- Plazas disponibles -->
                                 @if (!$clase->vacantes == 0)
                                     <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-green-800 bg-green-200 rounded-md">
-                                        Plazas
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                        </svg>
+
                                         <span class="inline-flex justify-center items-center ml-2 w-5 h-5 text-base font-semibold text-green-200 bg-green-800 rounded-md">
                                         {{ $clase->vacantes }}
                                         </span>
@@ -147,13 +150,13 @@
                         <div class="flex ml-6 mb-6 pb-4 rounded-md" role="group">
                             @if (!$clase->atletas->contains(Auth::user()) && $clase->vacantes != 0)
                                     <button wire:click="join({{ $clase->id }})" type="submit" class="inline-flex items-center py-2 px-4 text-base font-medium text-gray-900 bg-green-200 rounded-md border border-gray-200 hover:bg-green-300 hover:text-gray-700">
-                                        <svg aria-hidden="true" class="w-5 h-5 fill-current text-green-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <svg aria-hidden="true" class="w-5 h-5 text-green-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                                         </svg>
                                     </button>
                             @elseif ($clase->atletas->contains(Auth::user()))
                                     <button wire:click="leave({{ $clase->id }})" type="submit" class="inline-flex items-center py-2 px-4 text-base font-medium text-gray-900 bg-red-200 rounded-md border border-gray-200 hover:bg-red-300 hover:text-gray-700">
-                                        <svg aria-hidden="true" class="w-5 h-5 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <svg aria-hidden="true" class="w-5 h-5 text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                                         </svg>
                                     </button>
