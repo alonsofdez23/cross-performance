@@ -13,7 +13,7 @@ class IndexClases extends Component
 
     public function mount()
     {
-        $this->pickDay = Carbon::now();
+        $this->pickDay = Carbon::now()->tz('Europe/Madrid');
     }
 
     public function dayBack()
