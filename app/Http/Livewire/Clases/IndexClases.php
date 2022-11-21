@@ -18,11 +18,19 @@ class IndexClases extends Component
 
     public function dayBack()
     {
+        if (is_string($this->pickDay)) {
+            $this->pickDay = Carbon::create($this->pickDay)->tz('Europe/Madrid');
+        }
+
         $this->pickDay->subDay();
     }
 
     public function dayForward()
     {
+        if (is_string($this->pickDay)) {
+            $this->pickDay = Carbon::create($this->pickDay)->tz('Europe/Madrid');
+        }
+
         $this->pickDay->addDay();
     }
 
