@@ -28,7 +28,7 @@
                 <!-- Selector de días -->
                 <div class="flex justify-between">
                     <div>
-                        <button wire:click="dayBack" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
+                        <button wire:click="dayBack" class="inline-flex items-center mr-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                             </svg>
@@ -127,7 +127,7 @@
                             </h3>
 
                             <!-- Lista de atletas en clase -->
-                            <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
+                            <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
                                 @foreach ($clase->atletas as $atleta)
                                     <div class="flex -space-x-4 -space-y-2">
                                         <img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
