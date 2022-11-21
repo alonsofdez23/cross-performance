@@ -75,7 +75,7 @@ class IndexClases extends Component
 
         return view('livewire.clases.index-clases', [
             'clases' => $clases,
-            'users' => User::all(),
+            'users' => User::all()->sortBy('id'),
         ]);
     }
 }
