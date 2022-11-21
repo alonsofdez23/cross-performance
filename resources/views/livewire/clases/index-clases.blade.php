@@ -28,11 +28,11 @@
                 <!-- Selector de días -->
                 <div class="flex justify-between">
                     <div>
-                        <x-jet-button wire:click="dayBack">
+                        <button wire:click="dayBack" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                             </svg>
-                        </x-jet-button>
+                        </button>
                     </div>
                     <div>
                         <x-datetime-picker
@@ -43,11 +43,11 @@
                         />
                     </div>
                     <div>
-                        <x-jet-button wire:click="dayForward">
+                        <button wire:click="dayForward" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                             </svg>
-                        </x-jet-button>
+                        </button>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
                                 <!-- Plazas disponibles -->
                                 @if (!$clase->vacantes == 0)
                                     <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-green-800 bg-green-200 rounded-md">
-                                        Plazas disponibles
+                                        Plazas
                                         <span class="inline-flex justify-center items-center ml-2 w-5 h-5 text-base font-semibold text-green-200 bg-green-800 rounded-md">
                                         {{ $clase->vacantes }}
                                         </span>
@@ -90,7 +90,7 @@
 
                                 <!-- Entrenamiento -->
                                 @if ($clase->entreno != null)
-                                <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-200 bg-gray-500 rounded-md">
+                                <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
                                     <a href="{{ route('entrenos.show', $clase->entreno) }}">
                                         Entrenamiento
                                     </a>
