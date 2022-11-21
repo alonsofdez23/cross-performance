@@ -52,6 +52,14 @@ class IndexClases extends Component
         $clase->save();
     }
 
+    public function delete(User $atleta, Clase $clase)
+    {
+        $clase->atletas()->detach($atleta);
+
+        $clase->vacantes = $clase->vacantes +1;
+        $clase->save();
+    }
+
     public function submit(Clase $clase)
     {
         $clase->atletas()->attach($this->atleta);

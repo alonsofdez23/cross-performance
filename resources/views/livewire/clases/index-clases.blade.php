@@ -132,7 +132,16 @@
                             <!-- Lista de atletas en clase -->
                             <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6">
                                 @foreach ($clase->atletas as $atleta)
-                                    <div><img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}"></div>
+                                    <div class="flex -space-x-4 -space-y-2">
+                                        <img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
+                                        @role('admin')
+                                            <button wire:click="delete({{ $atleta }}, {{ $clase }})" type="submit" class="w-5 h-5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="#fecaca" viewBox="0 0 24 24" stroke-width="1.5" stroke="#991b1b" class="w-7 h-7 hover:fill-red-300">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </button>
+                                        @endrole
+                                    </div>
                                 @endforeach
                                 {{-- @for ($i = 0; $i < $clase->vacantes; $i++)
                                     <div><img class="rounded-2xl" src="https://ui-avatars.com/api/?background=bbf7d0&color=bbf7d0&size=512" alt="libre"></div>
@@ -167,6 +176,7 @@
                                 Settings
                             </button> --}}
 
+                            <!-- Select atleta a clase -->
                             @if ($clase->vacantes != 0)
                                 @role('admin')
                                     <form wire:submit="submit({{ $clase->id }})" class="flex">
