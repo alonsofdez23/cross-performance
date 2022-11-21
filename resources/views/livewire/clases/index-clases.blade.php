@@ -180,7 +180,7 @@
                             @if ($clase->vacantes != 0)
                                 @role('admin')
                                     <form wire:submit="submit({{ $clase->id }})" class="flex">
-                                        <div class="grid grid-cols-1 ml-4 sm:grid-cols-2 gap-5 sm:max-w-lg">
+                                        <div class="flex mx-3">
                                             <x-select
                                                 placeholder="Selecciona atleta"
                                                 wire:model.defer="atleta"
@@ -189,11 +189,14 @@
                                                     <x-select.user-option src="{{ $atleta->profile_photo_url }}" label="{{ $atleta->name }}" value="{{ $atleta->id }}" />
                                                 @endforeach
                                             </x-select>
+
+                                            <button type="submit" class="ml-3 inline-flex items-center py-2 px-4 text-base font-medium text-gray-900 bg-green-200 rounded-md border border-gray-200 hover:bg-green-300 hover:text-gray-700">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                                </svg>
+                                            </button>
                                         </div>
 
-                                        <button type="submit">
-                                            Apuntar a la clase
-                                        </button>
                                     </form>
                                 @endrole
                             @endif
