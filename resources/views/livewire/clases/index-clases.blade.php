@@ -106,9 +106,6 @@
                                             <svg aria-hidden="true" class="w-5 h-5 fill-current text-green-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
-                                            <span class="inline-flex items-center ml-1 text-sm text-center text-green-800">
-                                                Añadir entrenamiento
-                                            </span>
                                         </button>
                                     </form>
                                 @else
@@ -119,9 +116,6 @@
                                             <svg aria-hidden="true" class="w-5 h-5 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                                             </svg>
-                                            <span class="inline-flex items-center ml-1 text-sm text-center text-red-800">
-                                                Eliminar entrenamiento
-                                            </span>
                                         </button>
                                     </form>
                                 @endif
@@ -190,7 +184,7 @@
                                                 @endforeach
                                             </x-select>
 
-                                            <button type="submit" class="ml-3 inline-flex items-center py-2 px-4 text-base font-medium text-gray-900 bg-green-200 rounded-md border border-gray-200 hover:bg-green-300 hover:text-gray-700">
+                                            <button type="submit" class="ml-3 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-green-200 rounded-md border border-gray-200 hover:bg-green-300 hover:text-gray-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                                 </svg>
