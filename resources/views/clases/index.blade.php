@@ -51,7 +51,7 @@
                                     @endif
 
                                     @if ($clase->entreno != null)
-                                    <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-200 bg-gray-500 rounded-md">
+                                    <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-600 bg-gray-200 rounded-md">
                                         <a href="{{ route('entrenos.show', $clase->entreno) }}">
                                             Entrenamiento
                                         </a>
