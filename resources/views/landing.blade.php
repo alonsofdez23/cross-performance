@@ -44,7 +44,7 @@
 
 
 
-<div class="h-screen pb-14 bg-right bg-cover" style="background-image:url('http://localhost:8000/storage/svg/animatedBG.svg');">
+<div class="h-screen pb-14 bg-right bg-cover" style="background-image:url('http://localhost:8000/storage/svg/1440x720.svg');">
 	<!--Nav-->
 	<div class="w-full container mx-auto p-6">
 
@@ -81,7 +81,7 @@
 	</div>
 
 	<!--Main-->
-	<div class="container pt-24 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+	<div class="container pt-4 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center">
 
 		<!--Left Col-->
 		<div class="flex flex-col w-full xl:w-3/6 justify-center lg:items-start overflow-y-hidden">
@@ -91,8 +91,8 @@
 		</div>
 
 		<!--Right Col-->
-		<div class="flex items-center w-full xl:w-3/6 py-6 overflow-y-hidden">
-			<img class="h-64 mx-auto slide-in-bottom" src="http://localhost:8000/storage/svg/spartan.svg">
+		<div class="flex items-center w-full xl:w-3/6 overflow-y-hidden">
+			<img class="h-128 mx-auto slide-in-bottom" src="http://localhost:8000/storage/png/landPage1.png">
 		</div>
 
 	</div>
