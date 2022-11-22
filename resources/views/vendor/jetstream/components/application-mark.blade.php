@@ -4,7 +4,7 @@
 </svg> --}}
 
 <svg xmlns="http://www.w3.org/2000/svg"
-    width="2.77778in" height="2.77778in"
+    width="1in" height="1in"
     viewBox="0 0 250 250" {{ $attributes }}>
 <path id="Ruta importada"
      fill="none" stroke="black" stroke-width="5"
