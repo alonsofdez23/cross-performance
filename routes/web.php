@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EntrenoController;
 use App\Http\Controllers\ClaseController;
+use App\Http\Livewire\Clases\IndexClases;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,12 +31,8 @@ Route::middleware([
 
     Route::resource('entrenos', EntrenoController::class);
 
-    Route::resource('clases', ClaseController::class);
-
-    Route::post('/clases/join/{clase}', [ClaseController::class, 'join'])
-        ->name('clases.join');
-    Route::post('/clases/leave/{clase}', [ClaseController::class, 'leave'])
-        ->name('clases.leave');
+    Route::get('/clases', IndexClases::class)
+        ->name('clases.index');
 
     Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])
         ->name('clases.addentreno');
