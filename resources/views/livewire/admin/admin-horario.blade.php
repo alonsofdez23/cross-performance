@@ -6,8 +6,14 @@
 
                     <div>
                         <x-jet-label for="dia" value="Día" />
-                        <x-jet-input wire:model="dia" id="dia" type="text" placeholder="2022-11-27" class="mt-1 block w-full" />
-                        <x-jet-input-error for="dia" class="mt-2" />
+                        <x-datetime-picker
+                            class="mt-1 block w-full"
+                            parse-format="YYYY-MM-DD"
+                            without-tips="false"
+                            without-time="true"
+                            placeholder="Seleciona día"
+                            wire:model="dia"
+                        />
                     </div>
 
                     <div>

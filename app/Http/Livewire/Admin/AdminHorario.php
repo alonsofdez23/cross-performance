@@ -29,8 +29,6 @@ class AdminHorario extends Component
 
         $horario = $horario->except($horario->count() - 1);
 
-        dd($horario);
-
         foreach ($horario as $clase) {
             Clase::create([
                 'monitor_id' => $this->monitor,
