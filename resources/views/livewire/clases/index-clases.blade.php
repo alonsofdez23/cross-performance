@@ -34,11 +34,14 @@
                             </svg>
                         </button>
                     </div>
-                    <div>
+                    <div class="flex">
                         <input wire:model.lazy="pickDay" type="text"
                         id="date"
-                        class="mt-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2"
+                        class="mr-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2"
                         required/>
+                        <button wire:click="currentDay" class="inline-flex items-center mr-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
+                            Hoy
+                        </button>
                     </div>
                     <div>
                         <button wire:click="dayForward" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
@@ -217,6 +220,7 @@
         field: document.getElementById('date'),
         format: 'DD/MM/YYYY',
         firstDay: 1,
+        keyboardInput: false,
         i18n: {
             previousMonth : 'Anterior',
             nextMonth     : 'Siguiente',
