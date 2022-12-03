@@ -35,10 +35,14 @@
                         </button>
                     </div>
                     <div class="flex">
+                        {{-- <button id="datepicker-button" class="inline-flex items-center mr-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
+                            Fecha
+                        </button> --}}
                         <input wire:model.lazy="pickDay" type="text"
                         id="date"
                         class="mr-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2"
-                        required/>
+                        required
+                        readonly/>
                         <button wire:click="currentDay" class="inline-flex items-center mr-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
                             Hoy
                         </button>
