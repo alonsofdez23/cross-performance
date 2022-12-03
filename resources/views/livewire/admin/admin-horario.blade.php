@@ -6,14 +6,11 @@
 
                     <div>
                         <x-jet-label for="dia" value="Día" />
-                        <x-datetime-picker
-                            class="mt-1 block w-full"
-                            parse-format="YYYY-MM-DD"
-                            without-tips="false"
-                            without-time="true"
-                            placeholder="Seleciona día"
-                            wire:model="dia"
-                        />
+                        <input wire:model.lazy="dia" type="text"
+                        id="date"
+                        class="text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-300 w-full py-2"
+                        required
+                        readonly/>
                     </div>
 
                     <div>
@@ -70,3 +67,26 @@
                 </form>
 
 </div>
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<script>
+    new Pikaday({
+        field: document.getElementById('date'),
+        format: 'DD/MM/YYYY',
+        firstDay: 1,
+        keyboardInput: false,
+        i18n: {
+            previousMonth : 'Anterior',
+            nextMonth     : 'Siguiente',
+            months        : ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+            weekdays      : ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+            weekdaysShort : ['Dom','Lun','Mar','Mie','Jue','Vie','Sáb']
+        },
+        onSelect: function(date) {
+            field.value = this.getMoment().format('YYYY-MM-DD');
+        }
+    })
+</script>
+@endsection

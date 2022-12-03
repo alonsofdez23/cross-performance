@@ -20,9 +20,11 @@ class AdminHorario extends Component
 
     public function submit()
     {
+        $day = Carbon::createFromFormat('d/m/Y',$this->dia)->toDateString();
+
         $horario = HoursHelper::create(
-            $this->dia . ' ' . $this->horaInicio,
-            $this->dia . ' ' . $this->horaFin,
+            $day . ' ' . $this->horaInicio,
+            $day . ' ' . $this->horaFin,
             $this->duracion,
             'Y-m-d H:i',
         );
