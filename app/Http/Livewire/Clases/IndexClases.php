@@ -15,7 +15,7 @@ class IndexClases extends Component
 
     public function mount()
     {
-        $this->pickDay = Carbon::now()->tz('Europe/Madrid');
+        $this->pickDay = Carbon::now()->tz('Europe/Madrid')->format('d/m/Y');
 
         //$this->pickDay = '2022-11-14';
     }
