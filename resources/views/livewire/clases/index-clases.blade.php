@@ -34,13 +34,15 @@
                             </svg>
                         </button>
                     </div>
-                    <div>
-                        <x-datetime-picker
-                            without-tips="false"
-                            without-time="true"
-                            placeholder="Seleciona día"
-                            wire:model="pickDay"
-                        />
+                    <div class="flex">
+                        <input wire:model.lazy="pickDay" type="text"
+                        id="date"
+                        class="mr-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border border-gray-400 w-full py-2"
+                        required
+                        readonly/>
+                        <button wire:click="currentDay" class="inline-flex items-center mr-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
+                            Hoy
+                        </button>
                     </div>
                     <div>
                         <button wire:click="dayForward" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
@@ -140,9 +142,9 @@
                                         @endrole
                                     </div>
                                 @endforeach
-                                {{-- @for ($i = 0; $i < $clase->vacantes; $i++)
+                                @for ($i = 0; $i < $clase->vacantes; $i++)
                                     <div><img class="rounded-2xl" src="https://ui-avatars.com/api/?background=bbf7d0&color=bbf7d0&size=512" alt="libre"></div>
-                                @endfor --}}
+                                @endfor
                             </div>
                         </li>
 
@@ -210,3 +212,26 @@
 
     </div>
 </div>
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+<script>
+    new Pikaday({
+        field: document.getElementById('date'),
+        format: 'DD/MM/YYYY',
+        firstDay: 1,
+        keyboardInput: false,
+        i18n: {
+            previousMonth : 'Anterior',
+            nextMonth     : 'Siguiente',
+            months        : ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+            weekdays      : ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+            weekdaysShort : ['Dom','Lun','Mar','Mie','Jue','Vie','Sáb']
+        },
+        onSelect: function(date) {
+            field.value = this.getMoment().format('YYYY-MM-DD');
+        }
+    })
+</script>
+@endsection

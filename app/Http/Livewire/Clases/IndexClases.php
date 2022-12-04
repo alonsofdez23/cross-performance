@@ -15,27 +15,30 @@ class IndexClases extends Component
 
     public function mount()
     {
-        //$this->pickDay = Carbon::now()->tz('Europe/Madrid');
+        $this->pickDay = Carbon::now()->tz('Europe/Madrid')->format('d/m/Y');
 
-        $this->pickDay = '2022-11-14';
+        //$this->pickDay = '2022-11-14';
+    }
+
+    public function currentDay()
+    {
+        $current = now()->tz('Europe/Madrid')->format('d/m/Y');
+
+        $this->pickDay = $current;
     }
 
     public function dayBack()
     {
-        if (is_string($this->pickDay)) {
-            $this->pickDay = Carbon::create($this->pickDay)->tz('Europe/Madrid');
-        }
+        $dayBack = Carbon::createFromFormat('d/m/Y',$this->pickDay)->subDay()->tz('Europe/Madrid')->format('d/m/Y');
 
-        $this->pickDay->subDay();
+        $this->pickDay = $dayBack;
     }
 
     public function dayForward()
     {
-        if (is_string($this->pickDay)) {
-            $this->pickDay = Carbon::create($this->pickDay)->tz('Europe/Madrid');
-        }
+        $dayForward = Carbon::createFromFormat('d/m/Y',$this->pickDay)->addDay()->tz('Europe/Madrid')->format('d/m/Y');
 
-        $this->pickDay->addDay();
+        $this->pickDay = $dayForward;
     }
 
     public function join(Clase $clase)

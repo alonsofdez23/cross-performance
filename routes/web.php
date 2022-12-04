@@ -29,6 +29,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/admin', function () {
+        return view('admin.index');
+    })->name('adminpanel');
+
     Route::resource('entrenos', EntrenoController::class);
 
     Route::get('/clases', IndexClases::class)

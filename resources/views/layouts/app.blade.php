@@ -16,6 +16,7 @@
 
         <!-- Styles -->
         @livewireStyles
+        <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -41,5 +42,6 @@
         @stack('modals')
 
         @livewireScripts
+        @yield('scripts')
     </body>
 </html>
