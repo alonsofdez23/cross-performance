@@ -114,6 +114,10 @@
                                 </x-jet-dropdown-link>
                             @endrole
 
+                            <x-jet-dropdown-link href="{{ route('billing.index') }}">
+                                Facturación
+                            </x-jet-dropdown-link>
+
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
@@ -186,10 +190,14 @@
                 </x-jet-responsive-nav-link>
 
                 @role('admin')
-                    <x-jet-responsive-nav-link href="{{ route('adminpanel') }}">
+                    <x-jet-responsive-nav-link href="{{ route('adminpanel') }}" :active="request()->routeIs('adminpanel')">
                         Panel administrador
                     </x-jet-responsive-nav-link>
                 @endrole
+
+                <x-jet-responsive-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                    Facturación
+                </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\EntrenoController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Livewire\Clases\IndexClases;
@@ -32,6 +33,9 @@ Route::middleware([
     Route::get('/admin', function () {
         return view('admin.index');
     })->name('adminpanel');
+
+    Route::get('/billing', [BillingController::class, 'index'])
+        ->name('billing.index');
 
     Route::resource('entrenos', EntrenoController::class);
 
