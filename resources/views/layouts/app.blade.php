@@ -12,7 +12,16 @@
 
         <!-- Scripts -->
         @wireUiScripts
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite([
+            'resources/css/app.css',
+            'resources/css/forms.css',
+            'resources/css/spinner.css',
+            'resources/js/app.js'])
+        <script src="https://js.stripe.com/v3/"></script>
+
+        @isset($css)
+            {{ $css }}
+        @endisset
 
         <!-- Styles -->
         @livewireStyles
@@ -43,5 +52,9 @@
 
         @livewireScripts
         @yield('scripts')
+
+        @isset($js)
+            {{ $js }}
+        @endisset
     </body>
 </html>
