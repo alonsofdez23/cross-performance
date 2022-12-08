@@ -49,7 +49,7 @@
 
         <script>
             function stripe() {
-                const stripe = Stripe('pk_test_51LxluOFEu1F8Aw4ZFU3RtCL17JX0zICqtplmw3ereucD6pSNkh3BNoZIGHolOaBDzV4YG0eBse1jeG6rJbJiiQxN005p5lBK6R');
+                const stripe = Stripe("{{ env('STRIPE_KEY') }}");
 
                 const elements = stripe.elements();
                 const cardElement = elements.create('card');
