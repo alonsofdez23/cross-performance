@@ -7,6 +7,10 @@ use Livewire\Component;
 
 class PaymentMethodList extends Component
 {
+    protected $listeners = [
+        'render' => 'render',
+    ];
+
     public function render()
     {
         $paymentMethods = Auth::user()->paymentMethods();
