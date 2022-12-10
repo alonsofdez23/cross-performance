@@ -22,7 +22,12 @@ class PaymentMethodCreate extends Component
 
     public function paymentMethodCreate($paymentMethod)
     {
-        Auth::user()->addPaymentMethod($paymentMethod);
+        if (Auth::user()->hasPaymentMethod()) {
+            Auth::user()->addPaymentMethod($paymentMethod);
+        } else {
+            Auth::user()->updateDefaultPaymentMethod($paymentMethod);
+        }
+
 
         $this->emitTo('payment-method-list', 'render');
     }
