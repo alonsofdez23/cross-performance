@@ -21,4 +21,14 @@ class Subscriptions extends Component
     {
         Auth::user()->subscription($name)->swap($price);
     }
+
+    public function cancellingSubscription($name)
+    {
+        Auth::user()->subscription($name)->cancel();
+    }
+
+    public function resumingSubscription($name)
+    {
+        Auth::user()->subscription($name)->resume();
+    }
 }
