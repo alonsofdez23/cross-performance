@@ -1,10 +1,10 @@
 <div>
-    <section class="card relative">
+    <section class="card relative bg-white p-4 rounded-md shadow-lg shadow-gray-600">
         <div wire:loading.flex class="absolute w-full h-full bg-gray-100 bg-opacity-25 z-30 items-center justify-center">
             <x-spinner size="20" />
         </div>
 
-        <div class="px-6 py-4 bg-gray-50">
+        <div class="px-6 py-4 mb-4 bg-gray-200 rounded-md">
             <h1 class="text-gray-700 text-lg font-bold">Métodos de pago agregado</h1>
         </div>
         <div class="card-body divide-y divide-gray-200">
@@ -13,7 +13,7 @@
                     <div>
                         <h1><span class="font-bold">{{ $paymentMethod->billing_details->name }}</span> XXXX-{{ $paymentMethod->card->last4 }}
                         @if ($paymentMethod->id == Auth::user()->defaultPaymentMethod()->id)
-                            <span class="p-1 border bg-gray-200 border-gray-200 text-gray-500 rounded">Predeterminado</span>
+                            <span class="p-1 px-2 ml-4 border bg-gray-200 border-gray-200 text-gray-700 rounded">Predeterminado</span>
                         @endif
                         </h1>
                         <p>Expira {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>

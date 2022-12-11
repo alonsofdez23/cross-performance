@@ -1,5 +1,5 @@
 <div>
-    <article class="card relative">
+    <article class="card relative bg-white p-4 rounded-md shadow-lg shadow-gray-600">
 
         <div wire:loading.flex class="absolute w-full h-full bg-gray-100 bg-opacity-25 z-30 items-center justify-center">
             <x-spinner size="20" />
@@ -8,7 +8,9 @@
         <form action="" id="card-form">
             <div class="card-body">
 
-                <h1 class="text-gray-700 text-lg font-bold mb-4">Agregar método de pago</h1>
+                <div class="px-6 py-4 mb-4 bg-gray-200 rounded-md">
+                    <h1 class="text-gray-700 text-lg font-bold">Agregar método de pago</h1>
+                </div>
 
                 <div class="flex">
                     <p class="text-gray-700">Información de tarjeta</p>
@@ -27,8 +29,8 @@
 
             </div>
 
-            <div class="card-footer bg-gray-50 flex justify-end">
-                <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}">
+            <div class="card-footer px-6 pb-2 mt-6 flex justify-end">
+                <button class="font-bold bg-gray-600 hover:bg-gray-700 text-white rounded-md px-4 py-2 transition-colors" id="card-button" data-secret="{{ $intent->client_secret }}">
                     Actualizar método de pago
                 </button>
             </div>
