@@ -1,5 +1,5 @@
 <div>
-    <article class="card relative bg-white p-4 rounded-md shadow-lg shadow-gray-600">
+    <article class="card relative bg-white p-4 rounded-md shadow-md shadow-gray-400">
 
         <div wire:loading.flex class="absolute w-full h-full bg-gray-100 bg-opacity-25 z-30 items-center justify-center">
             <x-spinner size="20" />

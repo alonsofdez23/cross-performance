@@ -19,11 +19,15 @@ class Subscriptions extends Component
     public function newSubscription($name, $price)
     {
         Auth::user()->newSubscription($name, $price)->create();
+
+        $this->emitTo('billing.invoices','render');
     }
 
     public function changingPlans($name, $price)
     {
         Auth::user()->subscription($name)->swap($price);
+
+        $this->emitTo('billing.invoices','render');
     }
 
     public function cancellingSubscription($name)
