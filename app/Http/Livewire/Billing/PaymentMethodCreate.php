@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Billing;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -15,7 +15,7 @@ class PaymentMethodCreate extends Component
     {
         $this->emit('resetStripe');
 
-        return view('livewire.payment-method-create', [
+        return view('livewire.billing.payment-method-create', [
             'intent' => Auth::user()->createSetupIntent(),
         ]);
     }
@@ -32,7 +32,7 @@ class PaymentMethodCreate extends Component
         }
 
 
-        $this->emitTo('payment-method-list', 'render');
-        $this->emitTo('subscriptions', 'render');
+        $this->emitTo('billing.payment-method-list', 'render');
+        $this->emitTo('billing.subscriptions', 'render');
     }
 }

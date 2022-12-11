@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Billing;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -15,7 +15,7 @@ class PaymentMethodList extends Component
     {
         $paymentMethods = Auth::user()->paymentMethods();
 
-        return view('livewire.payment-method-list', [
+        return view('livewire.billing.payment-method-list', [
             'paymentMethods' => $paymentMethods,
         ]);
     }

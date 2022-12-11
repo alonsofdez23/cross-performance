@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Billing;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -13,7 +13,7 @@ class Subscriptions extends Component
 
     public function render()
     {
-        return view('livewire.subscriptions');
+        return view('livewire.billing.subscriptions');
     }
 
     public function newSubscription($name, $price)
