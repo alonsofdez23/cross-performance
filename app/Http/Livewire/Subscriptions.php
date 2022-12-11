@@ -7,6 +7,10 @@ use Livewire\Component;
 
 class Subscriptions extends Component
 {
+    protected $listeners = [
+        'render' => 'render',
+    ];
+
     public function render()
     {
         return view('livewire.subscriptions');

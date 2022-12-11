@@ -25,10 +25,14 @@ class PaymentMethodCreate extends Component
         if (Auth::user()->hasPaymentMethod()) {
             Auth::user()->addPaymentMethod($paymentMethod);
         } else {
+            if (!Auth::user()->hasStripeId()) {
+                Auth::user()->createAsStripeCustomer();
+            }
             Auth::user()->updateDefaultPaymentMethod($paymentMethod);
         }
 
 
         $this->emitTo('payment-method-list', 'render');
+        $this->emitTo('subscriptions', 'render');
     }
 }

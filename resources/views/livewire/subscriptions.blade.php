@@ -11,10 +11,6 @@
                 <div class="w-full flex-grow">
                     <h2 class="text-center font-bold uppercase mb-4">MENSUAL</h2>
                     <h3 class="text-center font-bold text-4xl mb-5">40€</h3>
-                    <ul class="text-sm px-5 mb-8">
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Lorem ipsum</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Dolor sit amet</li>
-                    </ul>
                 </div>
 
                 <x-button-subscription name="Full Box" price="price_1MDjkSFEu1F8Aw4Z7tdXS53X" />
@@ -26,13 +22,9 @@
                 <div class="w-full flex-grow">
                     <h2 class="text-center font-bold uppercase mb-4">TRIMESTRAL</h2>
                     <h3 class="text-center font-bold text-4xl md:text-5xl mb-5">108€</h3>
-                    <ul class="text-sm px-5 mb-8">
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Lorem ipsum</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Dolor sit amet</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Consectetur</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Adipisicing</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Elit repellat</li>
-                    </ul>
+                    <div class="flex justify-center">
+                        <h4 class="p-1 px-3 font-bold mb-6 border bg-gray-200 border-gray-200 text-gray-500 rounded">36€ / Mes</h4>
+                    </div>
                 </div>
 
                 <x-button-subscription name="Full Box" price="price_1MDjkSFEu1F8Aw4ZGCckGUCE" />
@@ -44,13 +36,9 @@
                 <div class="w-full flex-grow">
                     <h2 class="text-center font-bold uppercase mb-4">ANUAL</h2>
                     <h3 class="text-center font-bold text-4xl mb-5">384€</h3>
-                    <ul class="text-sm px-5 mb-8">
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Lorem ipsum</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Dolor sit amet</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Consectetur</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Adipisicing</li>
-                        <li class="leading-tight"><i class="mdi mdi-check-bold text-lg"></i> Much more...</li>
-                    </ul>
+                    <div class="flex justify-center">
+                        <h4 class="p-1 px-3 font-bold mb-6 border bg-gray-200 border-gray-200 text-gray-500 rounded">32€ / Mes</h4>
+                    </div>
                 </div>
 
                 <x-button-subscription name="Full Box" price="price_1MDjkSFEu1F8Aw4ZfatFUbOM" />

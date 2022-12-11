@@ -29,7 +29,7 @@
 
             <div class="card-footer bg-gray-50 flex justify-end">
                 <button class="btn btn-primary" id="card-button" data-secret="{{ $intent->client_secret }}">
-                    Update Payment Method
+                    Actualizar método de pago
                 </button>
             </div>
         </form>
