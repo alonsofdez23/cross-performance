@@ -21,7 +21,7 @@
 
                         <!-- Stripe Elements Placeholder -->
                         <div>
-                            <div class="form-control" id="card-element"></div>
+                            <div class="form-control p-3" id="card-element"></div>
                             <span class="invalid-feedback" id="cardErrors"></span>
                         </div>
                     </div>
