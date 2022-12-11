@@ -4,6 +4,7 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\EntrenoController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Livewire\Clases\IndexClases;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,10 @@ Route::middleware([
 
     Route::get('/billing', [BillingController::class, 'index'])
         ->name('billing.index');
+
+    Route::get('/user/invoice/{invoice}', function (Request $request, $invoiceId) {
+        return $request->user()->downloadInvoice($invoiceId);
+    });
 
     Route::resource('entrenos', EntrenoController::class);
 
