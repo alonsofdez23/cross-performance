@@ -35,16 +35,20 @@ Route::middleware([
         return view('admin.index');
     })->name('adminpanel');
 
+    // Facturación
     Route::get('/billing', [BillingController::class, 'index'])
         ->name('billing.index');
 
+    // Descargar facturas Stripe
     Route::get('/user/invoice/{invoice}', function (Request $request, $invoiceId) {
         return $request->user()->downloadInvoice($invoiceId);
     });
 
     Route::resource('entrenos', EntrenoController::class);
 
+    // Reserva de clases
     Route::get('/clases', IndexClases::class)
+        ->middleware('fullbox')
         ->name('clases.index');
 
     Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])
