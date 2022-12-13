@@ -18,6 +18,12 @@
                     <x-jet-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
                         Clases
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="">
+                        Chat
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                        Pagos
+                    </x-jet-nav-link>
                     @role('admin')
                     <x-jet-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
                         Entrenos
@@ -27,6 +33,15 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <!-- Alerta Suscripción -->
+                @if (!Auth::user()->subscribed('Full Box'))
+                    <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
+                        <a href="{{ route('billing.index') }}">
+                            <i class="fa-solid fa-bell fa-beat"></i>
+                            <span class="ml-2 font-bold">Apúntate</span>
+                        </a>
+                    </button>
+                @endif
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
@@ -157,6 +172,12 @@
             <x-jet-responsive-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
                 Clases
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="">
+                Chat
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                Pagos
+            </x-jet-responsive-nav-link>
             @role('admin')
             <x-jet-responsive-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
                 Entrenos
@@ -186,10 +207,14 @@
                 </x-jet-responsive-nav-link>
 
                 @role('admin')
-                    <x-jet-responsive-nav-link href="{{ route('adminpanel') }}">
+                    <x-jet-responsive-nav-link href="{{ route('adminpanel') }}" :active="request()->routeIs('adminpanel')">
                         Panel administrador
                     </x-jet-responsive-nav-link>
                 @endrole
+
+                <x-jet-responsive-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                    Facturación
+                </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
@@ -207,6 +232,15 @@
                     </x-jet-responsive-nav-link>
                 </form>
 
+                <!-- Alerta Suscripción -->
+                @if (!Auth::user()->subscribed('Full Box'))
+                    <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
+                        <a href="{{ route('billing.index') }}">
+                            <i class="fa-solid fa-bell fa-beat"></i>
+                            <span class="ml-2 font-bold">Apúntate</span>
+                        </a>
+                    </button>
+                @endif
                 <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="border-t border-gray-200"></div>

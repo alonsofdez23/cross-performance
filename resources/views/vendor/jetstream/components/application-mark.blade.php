@@ -107,4 +107,6 @@
           190.85,134.80 190.85,134.80 190.85,134.80 Z" />
 </svg> --}}
 
-<img src="http://localhost:8000/storage/svg/spartan.svg" alt="logo" class="h-10">
+{{-- <img src="http://localhost:8000/storage/svg/spartan.svg" alt="logo" class="h-10"> --}}
+
+<i class="fa-solid fa-dumbbell fa-2xl text-gray-700"></i>
