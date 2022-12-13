@@ -18,6 +18,12 @@
                     <x-jet-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
                         Clases
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="">
+                        Chat
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                        Pagos
+                    </x-jet-nav-link>
                     @role('admin')
                     <x-jet-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
                         Entrenos
@@ -123,10 +129,6 @@
                                 </x-jet-dropdown-link>
                             @endrole
 
-                            <x-jet-dropdown-link href="{{ route('billing.index') }}">
-                                Facturación
-                            </x-jet-dropdown-link>
-
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
@@ -169,6 +171,12 @@
             </x-jet-responsive-nav-link> --}}
             <x-jet-responsive-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
                 Clases
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="">
+                Chat
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                Pagos
             </x-jet-responsive-nav-link>
             @role('admin')
             <x-jet-responsive-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
