@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Clases;
 use App\Models\Clase;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,9 +14,15 @@ class IndexClases extends Component
     public $pickDay;
     public $atleta;
 
-    public function mount()
+    protected $queryString = [
+        'pickDay',
+    ];
+
+    public function mount(Request $request)
     {
-        $this->pickDay = Carbon::now()->tz('Europe/Madrid')->format('d/m/Y');
+        if (!$request->query()) {
+            $this->pickDay = Carbon::now()->tz('Europe/Madrid')->format('d/m/Y');
+        }
 
         //$this->pickDay = '2022-11-14';
     }
