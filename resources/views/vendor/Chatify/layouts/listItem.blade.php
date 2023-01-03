@@ -4,14 +4,14 @@
         <tr data-action="0">
             {{-- Avatar side --}}
             <td>
-            <div class="avatar av-m" style="background-color: #d9efff; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <span class="far fa-bookmark" style="font-size: 22px; color: #68a5ff;"></span>
+            <div class="avatar av-m" style="background-color: #ffd9d9; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <span class="far fa-bookmark" style="font-size: 22px; color: #b91c1c;"></span>
             </div>
             </td>
             {{-- center side --}}
             <td>
-                <p data-id="{{ Auth::user()->id }}" data-type="user">Saved Messages <span>You</span></p>
-                <span>Save messages secretly</span>
+                <p data-id="{{ Auth::user()->id }}" data-type="user">Mensajes guardados <span>Tú</span></p>
+                <span>Guarda tus mensajes</span>
             </td>
         </tr>
     </table>
@@ -27,7 +27,7 @@
                 <span class="activeStatus"></span>
             @endif
         <div class="avatar av-m"
-        style="background-image: url('{{ $user->avatar }}');">
+        style="background-image: url('{{ $user->profile_photo_url }}');">
         </div>
         </td>
         {{-- center side --}}
@@ -39,7 +39,7 @@
             {{-- Last Message user indicator --}}
             {!!
                 $lastMessage->from_id == Auth::user()->id
-                ? '<span class="lastMessageIndicator">You :</span>'
+                ? '<span class="lastMessageIndicator">Tú :</span>'
                 : ''
             !!}
             {{-- Last message body --}}
@@ -50,7 +50,7 @@
                 : $lastMessage->body
             !!}
             @else
-            <span class="fas fa-file"></span> Attachment
+            <span class="fas fa-file"></span> Archivo
             @endif
         </span>
         {{-- New messages counter --}}
@@ -68,7 +68,7 @@
         {{-- Avatar side --}}
         <td>
         <div class="avatar av-m"
-        style="background-image: url('{{ $user->avatar }}');">
+        style="background-image: url('{{ $user->profile_photo_url }}');">
         </div>
         </td>
         {{-- center side --}}

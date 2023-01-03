@@ -6,7 +6,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Chatify Messenger'),
+    'name' => env('CHATIFY_NAME', 'Chat'),
 
     /*
     |-------------------------------------
@@ -22,7 +22,7 @@ return [
     |-------------------------------------
     */
     'routes' => [
-        'prefix' => env('CHATIFY_ROUTES_PREFIX', 'chatify'),
+        'prefix' => env('CHATIFY_ROUTES_PREFIX', 'chat'),
         'middleware' => env('CHATIFY_ROUTES_MIDDLEWARE', ['web','auth']),
         'namespace' => env('CHATIFY_ROUTES_NAMESPACE', 'Chatify\Http\Controllers'),
     ],
@@ -90,15 +90,6 @@ return [
     |-------------------------------------
     */
     'colors' => (array) [
-        '#2180f3',
-        '#2196F3',
-        '#00BCD4',
-        '#3F51B5',
-        '#673AB7',
-        '#4CAF50',
-        '#FFC107',
-        '#FF9800',
-        '#ff2522',
-        '#9C27B0',
+        '#b91c1c',
     ],
 ];
