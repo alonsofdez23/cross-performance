@@ -21,7 +21,7 @@
 
                                 <ul class="space-y-4">
                                     @forelse ($this->users as $user)
-                                        <li class="cursor-pointer">
+                                        <li class="cursor-pointer" wire:click="open_chat_user({{ $user }})">
                                             <div class="flex">
                                                 <figure class="flex-shrink-0">
                                                     <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $user->profile_photo_url }}">
@@ -45,7 +45,34 @@
                         </div>
                     </div>
                     <div class="col-span-2">
+                        @if ($userChat || $chat)
+                            <div class="bg-gray-300 h-16 flex items-center px-3">
+                                <figure>
+                                    <img class="w-10 h-10 rounded-full object-cover object-center" src="{{ $userChat->profile_photo_url }}">
+                                </figure>
 
+                                <div class="ml-4">
+                                    <p class="text-gray-800">
+                                        {{ $userChat->name }}
+                                    </p>
+                                    <p class="text-green-800 text-xs">
+                                        En línea
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="h-[calc(100vh-18rem)] overflow-auto">
+                                el contenido de nuestro chat
+                            </div>
+
+                            <form class="bg-gray-100 h-16 flex items-center px-4">
+                                <x-jet-input type="text" class="flex-1" placeholder="Escribe tu mensaje" />
+
+                                <button class="flex-shrink-0 ml-4 text-xl text-gray-700">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+                        @endif
                     </div>
                 </div>
 
