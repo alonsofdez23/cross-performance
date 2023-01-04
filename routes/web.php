@@ -51,6 +51,11 @@ Route::middleware([
         ->middleware('fullbox')
         ->name('clases.index');
 
+    // Chat
+    Route::get('/chats', function(){
+
+    })->name('chat.index');
+
     Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])
         ->name('clases.addentreno');
     Route::post('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntrenoUpdate'])
