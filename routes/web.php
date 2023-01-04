@@ -3,6 +3,7 @@
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\EntrenoController;
 use App\Http\Controllers\ClaseController;
+use App\Http\Livewire\ChatComponent;
 use App\Http\Livewire\Clases\IndexClases;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -52,9 +53,8 @@ Route::middleware([
         ->name('clases.index');
 
     // Chat
-    Route::get('/chats', function(){
-
-    })->name('chat.index');
+    Route::get('/chats', ChatComponent::class)
+        ->name('chat.index');
 
     Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])
         ->name('clases.addentreno');
