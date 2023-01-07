@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -10,6 +11,7 @@ class ChatComponent extends Component
 {
     public $search;
     public $userChat, $chat;
+    public $bodyMensaje;
 
     // Propiedad computada
     public function getUsersProperty()
@@ -36,6 +38,32 @@ class ChatComponent extends Component
         } else {
             $this->userChat = $user;
         }
+    }
+
+    public function enviarMensaje()
+    {
+        $this->validate([
+            'bodyMensaje' => 'required',
+        ]);
+
+        if (!$this->chat) {
+            $this->chat = Chat::create();
+
+            $this->chat->users()->attach([
+                Auth::id(),
+                $this->userChat->id,
+            ]);
+        }
+
+        $this->chat->mensajes()->create([
+            'body' => $this->bodyMensaje,
+            'user_id' => Auth::id(),
+        ]);
+
+        $this->reset(
+            'bodyMensaje',
+            'userChat',
+        );
     }
 
     public function render()

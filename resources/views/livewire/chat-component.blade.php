@@ -65,8 +65,8 @@
                                 el contenido de nuestro chat
                             </div>
 
-                            <form class="bg-gray-100 h-16 flex items-center px-4">
-                                <x-jet-input type="text" class="flex-1" placeholder="Escribe tu mensaje" />
+                            <form class="bg-gray-100 h-16 flex items-center px-4" wire:submit.prevent="enviarMensaje()">
+                                <x-jet-input wire:model="bodyMensaje" type="text" class="flex-1" placeholder="Escribe tu mensaje" />
 
                                 <button class="flex-shrink-0 ml-4 text-xl text-gray-700">
                                     <i class="fas fa-paper-plane"></i>
