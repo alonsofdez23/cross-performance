@@ -47,16 +47,21 @@
                                 @foreach ($this->chats as $chatItem)
                                     <div wire:key="chats-{{ $chatItem->id }}"
                                         wire:click="open_chat({{ $chatItem }})"
-                                        class="flex items-center {{ $chat && $chat->id == $chatItem->id ? 'bg-gray-200' : 'bg-white' }} hover:bg-gray-200 cursor-pointer px-3">
+                                        class="flex items-center justify-between {{ $chat && $chat->id == $chatItem->id ? 'bg-gray-200' : 'bg-white' }} hover:bg-gray-200 cursor-pointer px-3">
                                         <figure>
                                             <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $chatItem->imagen }}">
                                         </figure>
-                                        <div class="ml-4 flex-1 py-4 border-b border-gray-200">
-                                            <p>
-                                                {{ $chatItem->nombre }}
-                                            </p>
-                                            <p class="text-xs">
-                                                23:45
+                                        <div class="w-[calc(100%-4rem)] py-4 border-b border-gray-200">
+                                            <div class="flex justify-between items-center">
+                                                <p>
+                                                    {{ $chatItem->nombre }}
+                                                </p>
+                                                <p class="text-xs">
+                                                    23:45
+                                                </p>
+                                            </div>
+                                            <p class="text-sm text-gray-700 mt-1 truncate">
+                                                {{ $chatItem->mensajes->last()->body }}
                                             </p>
                                         </div>
                                     </div>
