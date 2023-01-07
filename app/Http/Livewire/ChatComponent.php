@@ -33,7 +33,7 @@ class ChatComponent extends Component
 
     public function getChatsProperty()
     {
-        return Auth::user()->chats()->get();
+        return Auth::user()->chats()->get()->sortByDesc('ultimo_mensaje');
     }
 
     // Métodos
