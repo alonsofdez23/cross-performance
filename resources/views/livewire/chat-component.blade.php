@@ -97,15 +97,16 @@
                             </div>
 
                             <div class="h-[calc(100vh-18rem)] px-3 py-2 overflow-auto">
+                                <!-- Listado de mensajes -->
                                 @foreach ($this->mensajes as $mensaje)
 
-                                    <div class="flex justify-end mb-2">
-                                        <div class="rounded px-3 py-2 bg-green-200">
+                                    <div class="flex {{ $mensaje->user_id == Auth::id() ? 'justify-end' : '' }} mb-2">
+                                        <div class="rounded px-3 py-2 {{ $mensaje->user_id == Auth::id() ? 'bg-green-100' : 'bg-gray-100' }}">
                                             <p class="text-sm">
                                                 {{ $mensaje->body }}
                                             </p>
 
-                                            <p class="text-right text-xs text-gray-600 mt-1">
+                                            <p class="{{ $mensaje->user_id == Auth::id() ? 'text-right' : '' }} text-xs text-gray-600 mt-1">
                                                 {{ $mensaje->created_at->tz('Europe/Madrid')->format('d-m-y h:i A') }}
                                             </p>
                                         </div>
