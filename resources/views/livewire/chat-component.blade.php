@@ -48,12 +48,22 @@
                         @if ($userChat || $chat)
                             <div class="bg-gray-300 h-16 flex items-center px-3">
                                 <figure>
-                                    <img class="w-10 h-10 rounded-full object-cover object-center" src="{{ $userChat->profile_photo_url }}">
+
+                                    @if ($chat)
+                                        <img class="w-10 h-10 rounded-full object-cover object-center" src="{{ $chat->imagen }}">
+                                    @else
+                                        <img class="w-10 h-10 rounded-full object-cover object-center" src="{{ $userChat->profile_photo_url }}">
+                                    @endif
+
                                 </figure>
 
                                 <div class="ml-4">
                                     <p class="text-gray-800">
-                                        {{ $userChat->name }}
+                                        @if ($chat)
+                                            {{ $chat->nombre }}
+                                        @else
+                                            {{ $userChat->name }}
+                                        @endif
                                     </p>
                                     <p class="text-green-800 text-xs">
                                         En línea
