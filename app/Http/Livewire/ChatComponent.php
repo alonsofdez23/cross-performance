@@ -35,8 +35,16 @@ class ChatComponent extends Component
 
         if ($chat) {
             $this->chat = $chat;
+            $this->reset(
+                'userChat',
+                'bodyMensaje',
+            );
         } else {
             $this->userChat = $user;
+            $this->reset(
+                'chat',
+                'bodyMensaje',
+            );
         }
     }
 
