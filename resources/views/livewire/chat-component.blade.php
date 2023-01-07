@@ -72,6 +72,14 @@
                                     <i class="fas fa-paper-plane"></i>
                                 </button>
                             </form>
+                        @else
+                            <div class="w-full h-full flex justify-center items-center">
+                                <div>
+                                    <h1 class="text-center text-red-700 text-2xl">
+                                        Cross Performance
+                                    </h1>
+                                </div>
+                            </div>
                         @endif
                     </div>
                 </div>
