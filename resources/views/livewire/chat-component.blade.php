@@ -57,7 +57,7 @@
                                                     {{ $chatItem->nombre }}
                                                 </p>
                                                 <p class="text-xs">
-                                                    23:45
+                                                    {{ $chatItem->ultimo_mensaje->tz('Europe/Madrid')->format('h:i A') }}
                                                 </p>
                                             </div>
                                             <p class="text-sm text-gray-700 mt-1 truncate">

@@ -52,6 +52,15 @@ class Chat extends Model
         );
     }
 
+    public function ultimoMensaje(): Attribute
+    {
+        return new Attribute(
+            get: function(){
+                return $this->mensajes->last()->created_at;
+            }
+        );
+    }
+
     /**
      * Get all of the mensajes for the Chat
      *
