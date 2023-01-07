@@ -31,6 +31,11 @@ class ChatComponent extends Component
         //$this->chat->mensajes()->get()
     }
 
+    public function getChatsProperty()
+    {
+        return Auth::user()->chats()->get();
+    }
+
     // Métodos
     public function open_chat_user(User $user)
     {
@@ -46,14 +51,25 @@ class ChatComponent extends Component
             $this->reset(
                 'userChat',
                 'bodyMensaje',
+                'search',
             );
         } else {
             $this->userChat = $user;
             $this->reset(
                 'chat',
                 'bodyMensaje',
+                'search',
             );
         }
+    }
+
+    public function open_chat(Chat $chat)
+    {
+        $this->chat = $chat;
+        $this->reset(
+            'userChat',
+            'bodyMensaje',
+        );
     }
 
     public function enviarMensaje()

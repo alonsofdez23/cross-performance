@@ -16,32 +16,52 @@
                                 placeholder="Buscar" />
                         </div>
                         <div class="h-[calc(100vh-18.5rem)] overflow-auto border-t border-gray-700">
-                            <div class="px-4 py-3">
-                                <h2 class="text-gray-700 text-lg mb-4">Contactos</h2>
+                            @if ($this->chats->count() == 0 || $search)
+                                <div class="px-4 py-3">
+                                    <h2 class="text-gray-700 text-lg mb-4">Contactos</h2>
 
-                                <ul class="space-y-4">
-                                    @forelse ($this->users as $user)
-                                        <li class="cursor-pointer" wire:click="open_chat_user({{ $user }})">
-                                            <div class="flex">
-                                                <figure class="flex-shrink-0">
-                                                    <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $user->profile_photo_url }}">
-                                                </figure>
+                                    <ul class="space-y-4">
+                                        @forelse ($this->users as $user)
+                                            <li class="cursor-pointer" wire:click="open_chat_user({{ $user }})">
+                                                <div class="flex">
+                                                    <figure class="flex-shrink-0">
+                                                        <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $user->profile_photo_url }}">
+                                                    </figure>
 
-                                                <div class="flex-1 ml-5 border-b border-gray-700">
-                                                    <p class="text-gray-700">
-                                                        {{ $user->name }}
-                                                    </p>
-                                                    <p class="text-gray-500 text-xs">
-                                                        {{ $user->email }}
-                                                    </p>
+                                                    <div class="flex-1 ml-5 border-b border-gray-200">
+                                                        <p class="text-gray-700">
+                                                            {{ $user->name }}
+                                                        </p>
+                                                        <p class="text-gray-500 text-xs">
+                                                            {{ $user->email }}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    @empty
+                                            </li>
+                                        @empty
 
-                                    @endforelse
-                                </ul>
-                            </div>
+                                        @endforelse
+                                    </ul>
+                                </div>
+                            @else
+                                @foreach ($this->chats as $chatItem)
+                                    <div wire:key="chats-{{ $chatItem->id }}"
+                                        wire:click="open_chat({{ $chatItem }})"
+                                        class="flex items-center {{ $chat && $chat->id == $chatItem->id ? 'bg-gray-200' : 'bg-white' }} hover:bg-gray-200 cursor-pointer px-3">
+                                        <figure>
+                                            <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $chatItem->imagen }}">
+                                        </figure>
+                                        <div class="ml-4 flex-1 py-4 border-b border-gray-200">
+                                            <p>
+                                                {{ $chatItem->nombre }}
+                                            </p>
+                                            <p class="text-xs">
+                                                23:45
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="col-span-2">
