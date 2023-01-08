@@ -22,28 +22,28 @@
                                     <h2 class="text-gray-700 text-lg mb-4">Contactos</h2>
 
                                     <ul class="space-y-4">
-                                        @forelse ($this->users as $user)
-                                            <li class="cursor-pointer" wire:click="open_chat_user({{ $user }})">
-                                                <div class="flex">
-                                                    <figure class="flex-shrink-0">
-                                                        <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $user->profile_photo_url }}">
-                                                    </figure>
+                                        @foreach ($this->users as $user)
+                                            @if ($user->id != Auth::id())
+                                                <li class="cursor-pointer" wire:click="open_chat_user({{ $user }})">
+                                                    <div class="flex">
+                                                        <figure class="flex-shrink-0">
+                                                            <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $user->profile_photo_url }}">
+                                                        </figure>
 
-                                                    <div class="flex-1 ml-5 border-b border-gray-200">
-                                                        <p class="text-gray-700">
-                                                            {{ $user->name }}
-                                                        </p>
-                                                        @role('admin')
-                                                            <p class="text-gray-500 text-xs">
-                                                                {{ $user->email }}
+                                                        <div class="flex-1 ml-5 border-b border-gray-200">
+                                                            <p class="text-gray-700">
+                                                                {{ $user->name }}
                                                             </p>
-                                                        @endrole
+                                                            @role('admin')
+                                                                <p class="text-gray-500 text-xs">
+                                                                    {{ $user->email }}
+                                                                </p>
+                                                            @endrole
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                        @empty
-
-                                        @endforelse
+                                                </li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             @else
