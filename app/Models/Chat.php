@@ -61,6 +61,15 @@ class Chat extends Model
         );
     }
 
+    public function mensajesNoLeidos(): Attribute
+    {
+        return new Attribute(
+            get: function(){
+                return $this->mensajes()->where('user_id', '!=', Auth::id())->where('leido', false)->count();
+            }
+        );
+    }
+
     /**
      * Get all of the mensajes for the Chat
      *

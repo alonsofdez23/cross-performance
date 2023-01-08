@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Chat;
 use App\Models\Mensaje;
 use App\Models\User;
+use App\Notifications\MensajeLeido;
 use App\Notifications\NuevoMensaje;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -87,6 +88,12 @@ class ChatComponent extends Component
             'userChat',
             'bodyMensaje',
         );
+
+        $chat->mensajes()->where('user_id', '!=', Auth::id())->where('leido', false)->update([
+            'leido' => true,
+        ]);
+
+        Notification::send($this->notificaciones_usuarios, new MensajeLeido());
     }
 
     public function enviarMensaje()

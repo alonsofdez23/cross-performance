@@ -52,17 +52,32 @@
                                             <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $chatItem->imagen }}">
                                         </figure>
                                         <div class="w-[calc(100%-4rem)] py-4 border-b border-gray-200">
+
                                             <div class="flex justify-between items-center">
-                                                <p>
-                                                    {{ $chatItem->nombre }}
-                                                </p>
-                                                <p class="text-xs">
-                                                    {{ $chatItem->ultimo_mensaje->tz('Europe/Madrid')->format('d/m/y G:i') }}
-                                                </p>
+                                                <div>
+                                                    <p>
+                                                        {{ $chatItem->nombre }}
+                                                    </p>
+
+                                                    <p class="text-sm text-gray-700 mt-1 truncate">
+                                                        {{ $chatItem->mensajes->last()->body }}
+                                                    </p>
+                                                </div>
+
+                                                <div class="text-right">
+                                                    <p class="text-xs">
+                                                        {{ $chatItem->ultimo_mensaje->tz('Europe/Madrid')->format('d/m/y G:i') }}
+                                                    </p>
+
+                                                    @if ($chatItem->mensajes_no_leidos != 0)
+                                                        <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-700 rounded-full">
+                                                            {{ $chatItem->mensajes_no_leidos }}
+                                                        </span>
+                                                    @endif
+                                                </div>
+
                                             </div>
-                                            <p class="text-sm text-gray-700 mt-1 truncate">
-                                                {{ $chatItem->mensajes->last()->body }}
-                                            </p>
+
                                         </div>
                                     </div>
                                 @endforeach
