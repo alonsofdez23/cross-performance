@@ -127,6 +127,12 @@ class ChatComponent extends Component
     public function render()
     {
         if ($this->chat) {
+            $this->chat->mensajes()->where('user_id', '!=', Auth::id())->where('leido', false)->update([
+                'leido' => true,
+            ]);
+
+            Notification::send($this->notificaciones_usuarios, new MensajeLeido());
+
             $this->emit('scrollIntoView');
         }
 
