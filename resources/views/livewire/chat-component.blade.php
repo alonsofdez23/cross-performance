@@ -6,7 +6,8 @@
                 <div class="grid grid-cols-3 divide-x divide-gray-700">
                     <div class="col-span-1">
                         <div class="bg-gray-300 h-16 flex items-center px-4">
-                            <img class="w-10 h-10 object-cover object-center" src="{{ Auth::user()->profile_photo_url }}">
+                            <img class="w-10 h-10 object-cover object-center rounded-full" src="{{ Auth::user()->profile_photo_url }}">
+                            <p class="ml-4">{{ Auth::user()->name }}</p>
                         </div>
 
                         <div class="bg-gray-200 h-14 flex items-center px-4">
