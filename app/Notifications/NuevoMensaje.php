@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NuevoMensaje extends Notification
+class NuevoMensaje extends Notification implements ShouldQueue
 {
     use Queueable;
 
