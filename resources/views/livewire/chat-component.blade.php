@@ -57,7 +57,7 @@
                                                     {{ $chatItem->nombre }}
                                                 </p>
                                                 <p class="text-xs">
-                                                    {{ $chatItem->ultimo_mensaje->tz('Europe/Madrid')->format('h:i A') }}
+                                                    {{ $chatItem->ultimo_mensaje->tz('Europe/Madrid')->format('d/m/y G:i') }}
                                                 </p>
                                             </div>
                                             <p class="text-sm text-gray-700 mt-1 truncate">
@@ -107,7 +107,7 @@
                                             </p>
 
                                             <p class="{{ $mensaje->user_id == Auth::id() ? 'text-right' : '' }} text-xs text-gray-600 mt-1">
-                                                {{ $mensaje->created_at->tz('Europe/Madrid')->format('d-m-y h:i A') }}
+                                                {{ $mensaje->created_at->tz('Europe/Madrid')->format('d/m/y G:i') }}
                                             </p>
                                         </div>
                                     </div>
