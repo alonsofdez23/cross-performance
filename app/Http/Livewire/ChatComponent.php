@@ -5,7 +5,9 @@ namespace App\Http\Livewire;
 use App\Models\Chat;
 use App\Models\Mensaje;
 use App\Models\User;
+use App\Notifications\NuevoMensaje;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 
 class ChatComponent extends Component
@@ -34,6 +36,11 @@ class ChatComponent extends Component
     public function getChatsProperty()
     {
         return Auth::user()->chats()->get()->sortByDesc('ultimo_mensaje');
+    }
+
+    public function getNotificacionesUsuariosProperty()
+    {
+        return $this->chat ? $this->chat->users->where('id', '!=', Auth::id()) : [];
     }
 
     // Métodos
@@ -91,6 +98,8 @@ class ChatComponent extends Component
             'body' => $this->bodyMensaje,
             'user_id' => Auth::id(),
         ]);
+
+        Notification::send($this->notificaciones_usuarios, new NuevoMensaje());
 
         $this->reset(
             'bodyMensaje',
