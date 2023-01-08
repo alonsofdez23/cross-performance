@@ -32,9 +32,11 @@
                                                         <p class="text-gray-700">
                                                             {{ $user->name }}
                                                         </p>
-                                                        <p class="text-gray-500 text-xs">
-                                                            {{ $user->email }}
-                                                        </p>
+                                                        @role('admin')
+                                                            <p class="text-gray-500 text-xs">
+                                                                {{ $user->email }}
+                                                            </p>
+                                                        @endrole
                                                     </div>
                                                 </div>
                                             </li>
@@ -51,7 +53,7 @@
                                         <figure>
                                             <img class="h-12 w-12 object-cover object-center rounded-full" src="{{ $chatItem->imagen }}">
                                         </figure>
-                                        <div class="w-[calc(100%-4rem)] py-4 border-b border-gray-200">
+                                        <div class="w-[calc(100%-4rem)] py-4 border-b border-gray-200 truncate">
 
                                             <div class="flex justify-between items-center">
                                                 <div>
@@ -105,9 +107,11 @@
                                             {{ $userChat->name }}
                                         @endif
                                     </p>
-                                    <p class="text-green-800 text-xs">
-                                        En línea
-                                    </p>
+                                    @role('admin')
+                                        <p class="text-gray-500 text-xs">
+                                            {{ $userChat->email }}
+                                        </p>
+                                    @endrole
                                 </div>
                             </div>
 
