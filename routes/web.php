@@ -53,7 +53,7 @@ Route::middleware([
         ->name('clases.index');
 
     // Chat
-    Route::get('/chats', ChatComponent::class)
+    Route::get('/chat', ChatComponent::class)
         ->name('chat.index');
 
     Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])

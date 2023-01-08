@@ -25,7 +25,7 @@
     </div>
 
     <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
-        <a href="" class="flex items-center justify-center">
+        <a href="{{ route('chat.index') }}" class="flex items-center justify-center">
             <i class="fa-solid fa-message fa-xl text-gray-400"></i>
             <div class="ml-3 text-lg text-gray-600 leading-7 font-semibold">Chat</div>
         </a>
