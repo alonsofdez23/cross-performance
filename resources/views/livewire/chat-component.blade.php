@@ -96,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="h-[calc(100vh-18rem)] px-3 py-2 overflow-auto">
+                            <div class="h-[calc(100vh-19rem)] px-3 py-2 overflow-auto">
                                 <!-- Listado de mensajes -->
                                 @foreach ($this->mensajes as $mensaje)
 
@@ -113,6 +113,9 @@
                                     </div>
 
                                 @endforeach
+
+                                <span id="final"></span>
+
                             </div>
 
                             <form class="bg-gray-100 h-16 flex items-center px-4" wire:submit.prevent="enviarMensaje()">
@@ -137,4 +140,13 @@
             </div>
         </div>
     </div>
+
+    @push('js')
+        <script>
+            Livewire.on('scrollIntoView', function() {
+                document.getElementById('final').scrollIntoView(true);
+            });
+        </script>
+    @endpush
+
 </div>
