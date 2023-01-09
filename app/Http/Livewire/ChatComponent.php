@@ -88,12 +88,6 @@ class ChatComponent extends Component
             'userChat',
             'bodyMensaje',
         );
-
-        $chat->mensajes()->where('user_id', '!=', Auth::id())->where('leido', false)->update([
-            'leido' => true,
-        ]);
-
-        Notification::send($this->notificaciones_usuarios, new MensajeLeido());
     }
 
     public function enviarMensaje()
@@ -130,8 +124,6 @@ class ChatComponent extends Component
             $this->chat->mensajes()->where('user_id', '!=', Auth::id())->where('leido', false)->update([
                 'leido' => true,
             ]);
-
-            Notification::send($this->notificaciones_usuarios, new MensajeLeido());
 
             $this->emit('scrollIntoView');
         }
