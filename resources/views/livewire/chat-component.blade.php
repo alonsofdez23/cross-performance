@@ -19,7 +19,7 @@
                         <div class="h-[calc(100vh-18.5rem)] overflow-auto border-t border-gray-700">
                             @if ($this->chats->count() == 0 || $search)
                                 <div class="px-4 py-3">
-                                    <h2 class="text-gray-700 text-lg mb-4">Contactos</h2>
+                                    <h2 class="text-gray-700 text-lg mb-4">Atletas</h2>
 
                                     <ul class="space-y-4">
                                         @foreach ($this->users as $user)
@@ -108,11 +108,15 @@
                                             {{ $userChat->name }}
                                         @endif
                                     </p>
-                                    @role('admin')
-                                        <p class="text-gray-500 text-xs">
-                                            {{ $userChat->email }}
-                                        </p>
-                                    @endrole
+                                    <p class="text-gray-700 text-xs">
+                                        @role('admin')
+                                            @if ($chat)
+                                                {{ $chat->users->except(Auth::id())->first()->email }}
+                                            @else
+                                                {{ $userChat->email }}
+                                            @endif
+                                        @endrole
+                                    </p>
                                 </div>
                             </div>
 
