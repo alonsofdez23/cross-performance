@@ -85,6 +85,38 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all of the contactos for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contactos()
+    {
+        return $this->hasMany(Contacto::class);
+    }
+
+    /**
+     * Get all of the mensajes for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mensajes()
+    {
+        return $this->hasMany(Mensaje::class);
+    }
+
+    /**
+     * The chats that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class)
+            ->withPivot('color', 'activo')
+            ->withTimestamps();
+    }
+
+    /**
      * The "booted" method of the model.
      *
      * @return void

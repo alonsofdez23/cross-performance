@@ -109,4 +109,4 @@
 
 {{-- <img src="http://localhost:8000/storage/svg/spartan.svg" alt="logo" class="h-10"> --}}
 
-<i class="fa-solid fa-dumbbell fa-2xl text-gray-700"></i>
+<i {{ $attributes->merge(["class" => "fa-solid fa-dumbbell fa-2xl text-gray-600"]) }}></i>

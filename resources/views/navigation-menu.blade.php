@@ -18,7 +18,7 @@
                     <x-jet-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
                         Clases
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="">
+                    <x-jet-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.index')">
                         Chat
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
@@ -172,7 +172,7 @@
             <x-jet-responsive-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
                 Clases
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="">
+            <x-jet-responsive-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.index')">
                 Chat
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">

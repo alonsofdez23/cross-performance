@@ -27,6 +27,8 @@
         <!-- Styles -->
         @livewireStyles
         <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
+
+        @stack('css')
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -53,6 +55,8 @@
 
         @livewireScripts
         @yield('scripts')
+
+        @stack('js')
 
         @isset($js)
             {{ $js }}
