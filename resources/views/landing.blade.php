@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Cross Performance - Landing Page</title>
+	<title>Cross Performance</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 
@@ -40,7 +40,7 @@
 </head>
 
 
-<body class="leading-normal tracking-normal text-gray-900" style="font-family: 'Source Sans Pro', sans-serif;">
+<body class="leading-normal tracking-normal text-gray-900 font-sans antialiased">
 
 
 
@@ -49,20 +49,32 @@
 	<div class="w-full container mx-auto p-6">
 
 		<div class="w-full flex items-center justify-between">
-			<a class="flex items-center text-red-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#">
-                <img src="http://localhost:8000/storage/svg/spartan.svg" class="h-12 text-red-700 pr-2"> Cross Performance
+            <a class="flex items-center text-gray-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#">
+                <img src="http://localhost:8000/storage/svg/dumbbell.svg" class="h-12 text-gray-700 pr-2"> Cross Performance
             </a>
 
 			<div class="flex w-1/2 justify-end content-center">
                 @if (Route::has('login'))
-                    <div class="top-0 right-0 px-6 py-4 sm:block">
+                    <div class="flex top-0 right-0 sm:block justify-end">
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Menú</a>
+                            <a href="{{ url('/dashboard') }}">
+                                <x-jet-button>
+                                    Menú
+                                </x-jet-button>
+                            </a>
                         @else
-                            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Iniciar sesión</a>
+                            <a href="{{ route('login') }}">
+                                <x-jet-button>
+                                    Login
+                                </x-jet-button>
+                            </a>
 
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Registrarse</a>
+                            <a href="{{ route('register') }}">
+                                <x-jet-button>
+                                    Registrarse
+                                </x-jet-button>
+                            </a>
                             @endif
                         @endauth
                     </div>
@@ -85,7 +97,7 @@
 
 		<!--Left Col-->
 		<div class="flex flex-col w-full xl:w-3/6 justify-center lg:items-start overflow-y-hidden">
-			<h1 class="my-4 text-3xl md:text-5xl text-red-700 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">Cross Performace</h1>
+			<h1 class="my-4 text-3xl md:text-5xl text-gray-700 font-bold leading-tight text-center md:text-left slide-in-bottom-h1">Cross Performance</h1>
 			<p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle">Tu app para gestión y administración de tu centro deportivo.</p>
 
 		</div>
