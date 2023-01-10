@@ -49,9 +49,9 @@
 	<div class="w-full container mx-auto p-6">
 
 		<div class="w-full flex items-center justify-between">
-            <a class="flex items-center text-gray-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"  href="#">
+            <div class="flex items-center text-gray-700 font-bold text-2xl lg:text-4xl">
                 <img src="http://localhost:8000/storage/svg/dumbbell.svg" class="h-12 text-gray-700 pr-2"> Cross Performance
-            </a>
+            </div>
 
 			<div class="flex w-1/2 justify-end content-center">
                 @if (Route::has('login'))
