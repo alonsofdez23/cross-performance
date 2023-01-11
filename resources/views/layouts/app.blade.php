@@ -58,6 +58,8 @@
 
         @stack('js')
 
+        @stack('cal')
+
         @isset($js)
             {{ $js }}
         @endisset

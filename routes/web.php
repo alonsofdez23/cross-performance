@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\EntrenoController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Livewire\ChatComponent;
@@ -32,9 +33,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/admincal', function () {
-        return view('admin.indexcal');
-    })->name('adminpanel');
+    // Calendario
+    Route::get('/admincal', [CalendarController::class, 'index'])
+        ->name('adminpanel');
 
     // Facturación
     Route::get('/billing', [BillingController::class, 'index'])
