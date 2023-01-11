@@ -13,12 +13,14 @@ class Clase extends Model
 
     protected $casts = [
         'fecha_hora' => 'datetime',
+        'final' => 'datetime',
     ];
 
     protected $fillable = [
         'monitor_id',
         'fecha_hora',
         'vacantes',
+        'final',
     ];
 
     /**

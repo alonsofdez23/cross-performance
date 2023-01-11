@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clase;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -17,7 +19,7 @@ class CalendarController extends Controller
             $events[] = [
                 'title' => explode(' ', $appointment->monitor->name)[0],
                 'start' => $appointment->fecha_hora,
-                'end' => $appointment->fecha_hora->addHour(),
+                'end' => $appointment->final,
             ];
         }
 
