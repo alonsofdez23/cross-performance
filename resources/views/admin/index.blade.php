@@ -5,5 +5,7 @@
 @stop
 
 @section('content')
-    <p>Bienvenido al panel de administrador</p>
+<x-app-layout>
+    @livewire('admin.admin-horario')
+</x-app-layout>
 @stop

@@ -32,9 +32,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    /* Route::get('/admin', function () {
-        return view('admin.index');
-    })->name('adminpanel'); */
+    Route::get('/admincal', function () {
+        return view('admin.indexcal');
+    })->name('adminpanel');
 
     // Facturación
     Route::get('/billing', [BillingController::class, 'index'])
