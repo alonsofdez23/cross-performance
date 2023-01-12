@@ -21,6 +21,7 @@ class Clase extends Model
         'fecha_hora',
         'vacantes',
         'final',
+        'idevent',
     ];
 
     /**
