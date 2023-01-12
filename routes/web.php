@@ -36,6 +36,11 @@ Route::middleware([
     // Calendario
     Route::get('/admincal', [CalendarController::class, 'index'])
         ->name('adminpanel');
+    Route::get('/crearclase', [CalendarController::class, 'crearclase'])
+        ->name('crearclase');
+
+    Route::get('/admincalget', [CalendarController::class, 'getclase'])
+        ->name('getclase');
 
     // Facturación
     Route::get('/billing', [BillingController::class, 'index'])
