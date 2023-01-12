@@ -11,9 +11,9 @@
                     </x-jet-section-title>
 
                     <div class="mt-5 md:mt-0 md:col-span-2">
-
-                        <div id="calendar"></div>
-
+                        <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-md">
+                            <div id="calendar"></div>
+                        </div>
                     </div>
             </div>
 
@@ -66,7 +66,8 @@
         </div>
     </div>
     @push('cal')
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.0.2/index.global.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var calendarEl = document.getElementById('calendar');
