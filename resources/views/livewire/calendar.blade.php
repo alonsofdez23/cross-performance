@@ -23,7 +23,7 @@
 
                 <p>
                     <input type='checkbox' id='drop-remove' />
-                    <label for='drop-remove'>remove after drop</label>
+                    <label for='drop-remove'>Borrar después de colocar</label>
                 </p>
 
                 <ul>

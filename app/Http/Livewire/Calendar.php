@@ -43,24 +43,23 @@ class Calendar extends Component
 
     public function eventReceive($event)
     {
-        dd($this->name);
-        dd($event);
-        //dd(Carbon::createFromTimeString($event['start'])->subHour());
-
-        /* Clase::create([
+        Clase::create([
             'monitor_id' => Auth::id(),
             'fecha_hora' => Carbon::createFromTimeString($event['start'])->subHour(),
             'vacantes' => 6,
-            'final' => Carbon::createFromTimeString($event['start']),
-        ]); */
+            'idevent' => $event['id'],
+        ]);
 
-        $this->events[] = 'eventReceive: ' . print_r($event, true);
+        //$this->events[] = 'eventReceive: ' . print_r($event, true);
     }
 
     public function eventDrop($event, $oldEvent)
     {
-        dd($oldEvent);
-        $this->events[] = 'eventDrop: ' . print_r($oldEvent, true) . ' -> ' . print_r($event, true);
+        Clase::where('idevent', $oldEvent['id'])->update([
+            'fecha_hora' => Carbon::createFromTimeString($event['start'])->subHour(),
+        ]);
+
+        //$this->events[] = 'eventDrop: ' . print_r($oldEvent, true) . ' -> ' . print_r($event, true);
     }
 
     public function render()
