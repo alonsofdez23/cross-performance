@@ -44,6 +44,7 @@ class CalendarController extends Controller
 
         foreach ($appointments as $appointment) {
             $events[] = [
+                'id' => $appointment->id,
                 'title' => explode(' ', $appointment->monitor->name)[0],
                 'start' => $appointment->fecha_hora,
                 'end' => $appointment->final,
