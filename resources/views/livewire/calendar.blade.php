@@ -1,51 +1,45 @@
-<div>
+<div class="mt-10 sm:mt-0">
+    <div class="md:grid md:grid-cols-4 md:gap-6">
 
-    <div class="mt-10 sm:mt-0">
-        <div class="md:grid md:grid-cols-4 md:gap-6">
-            {{-- <x-jet-section-title>
-                <x-slot name="title">Horario</x-slot>
-                <x-slot name="description">Definir horarios para clases</x-slot> --}}
+        <div>
 
-            <div>
+            <div id='external-events'>
+                <p>
+                    <strong>Clases</strong>
+                </p>
 
-                <div id='external-events'>
-                    <p>
-                        <strong>Draggable Events</strong>
-                    </p>
-
-                    <select wire:model="name" id="selectName">
-                        <option value="">Elige monitor</option>
-                        @foreach ($this->names as $name)
-                            <option value="{{ $name }}">{{ $name }}</option>
-                        @endforeach
-                    </select>
-
-                    @foreach ($this->tasks as $task)
-                        <div  data-event='@json(['id' => uniqid(), 'title' => $task])' class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                            <div class='fc-event-main'>{{ $task}}</div>
-                        </div>
+                <select wire:model="name" class="mb-3 bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+                    <option value="">Monitor</option>
+                    @foreach ($this->names as $name)
+                        <option value="{{ $name }}">{{ $name }}</option>
                     @endforeach
+                </select>
 
-                    <p>
-                        <input type='checkbox' id='drop-remove' />
-                        <label for='drop-remove'>remove after drop</label>
-                    </p>
+                @foreach ($this->tasks as $task)
+                    <div  data-event='@json(['id' => uniqid(), 'title' => $task])' class='cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>{{ $task}}</div>
+                    </div>
+                @endforeach
 
-                    <ul>
-                        @foreach (array_reverse($events) as $event)
-                            <li>{{ $event }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                <p>
+                    <input type='checkbox' id='drop-remove' />
+                    <label for='drop-remove'>remove after drop</label>
+                </p>
 
-            {{-- </x-jet-section-title> --}}
+                <ul>
+                    @foreach (array_reverse($events) as $event)
+                        <li>{{ $event }}</li>
+                    @endforeach
+                </ul>
             </div>
 
-            <div class="mt-5 md:mt-0 md:col-span-3">
-                <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-md">
-                    <div id='calendar' wire:ignore></div>
-                </div>
+        </div>
+
+        <div class="mt-5 md:mt-0 md:col-span-3">
+            <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-md">
+                <div id='calendar' wire:ignore></div>
             </div>
+        </div>
     </div>
 </div>
 
@@ -113,7 +107,7 @@
         });
 
         calendar.addEventSource( {
-            url: '/calendar/events',
+            url: '/admincalget',
             extraParams: function() {
                 return {
                     name: @this.name
@@ -129,21 +123,4 @@
     });
 
     </script>
-
-    <style>
-
-    /* #external-events {
-        z-index: 2;
-        top: 20px;
-        left: 20px;
-        width: 150px;
-        padding: 0 10px;
-    } */
-
-    #external-events .fc-event {
-        cursor: move;
-        margin: 3px 0;
-    }
-
-    </style>
 @endpush

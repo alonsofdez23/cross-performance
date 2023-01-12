@@ -2,11 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Clase;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Calendar extends Component
 {
-    public $name = 'Barry';
+    public $name = 'admin';
     public $events = [];
 
     public function updatedName()
@@ -17,8 +21,8 @@ class Calendar extends Component
     public function getNamesProperty()
     {
         return [
-            'Barry',
-            'Taylor',
+            'admin',
+            'Barop',
             'Caleb',
         ];
     }
@@ -26,9 +30,9 @@ class Calendar extends Component
     public function getTasksProperty()
     {
         switch ($this->name) {
-        case 'Barry':
-            return ['Debugbar', 'IDE Helper'];
-        case 'Taylor':
+        case 'admin':
+            return ['CrossFit', 'Yoga', 'Halterofilia'];
+        case 'Barop':
             return ['Laravel', 'Jetstream'];
         case 'Caleb':
             return ['Livewire', 'Sushi'];
@@ -39,12 +43,23 @@ class Calendar extends Component
 
     public function eventReceive($event)
     {
+        dd($this->name);
         dd($event);
+        //dd(Carbon::createFromTimeString($event['start'])->subHour());
+
+        /* Clase::create([
+            'monitor_id' => Auth::id(),
+            'fecha_hora' => Carbon::createFromTimeString($event['start'])->subHour(),
+            'vacantes' => 6,
+            'final' => Carbon::createFromTimeString($event['start']),
+        ]); */
+
         $this->events[] = 'eventReceive: ' . print_r($event, true);
     }
 
     public function eventDrop($event, $oldEvent)
     {
+        dd($oldEvent);
         $this->events[] = 'eventDrop: ' . print_r($oldEvent, true) . ' -> ' . print_r($event, true);
     }
 

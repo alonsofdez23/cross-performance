@@ -38,15 +38,18 @@ class CalendarController extends Controller
 
     public function getclase()
     {
-        if (request()->ajax()) {
-            $fecha_hora = (!empty($_GET["fecha_hora"])) ? ($_GET["fecha_hora"]) : ('');
-            $final = (!empty($_GET["final"])) ? ($_GET["final"]) : ('');
-            $events = Clase::whereDate('fecha_hora', '>=', $fecha_hora)
-                ->whereDate('final', '<=', $final)
-                ->get(['id', 'monitor_id', 'fecha_hora', 'final']);
+        $events = [];
 
-            return response()->json($events);
+        $appointments = Clase::with(['monitor'])->get();
+
+        foreach ($appointments as $appointment) {
+            $events[] = [
+                'title' => explode(' ', $appointment->monitor->name)[0],
+                'start' => $appointment->fecha_hora,
+                'end' => $appointment->final,
+            ];
         }
-        return view('admin.indexcal');
+
+        return $events;
     }
 }
