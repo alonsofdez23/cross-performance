@@ -62,6 +62,19 @@ class Calendar extends Component
         //$this->events[] = 'eventDrop: ' . print_r($oldEvent, true) . ' -> ' . print_r($event, true);
     }
 
+    public function eventClick($event)
+    {
+        $clase = Clase::where('idevent', $event['id'])->first();
+
+        if ($clase->atletas->isEmpty()) {
+            $clase->delete();
+        }
+
+        $this->emit("refreshCalendar");
+
+        //dd($clase);
+    }
+
     public function render()
     {
         return view('livewire.calendar');

@@ -40,11 +40,12 @@ class CalendarController extends Controller
     {
         $events = [];
 
-        $appointments = Clase::with(['monitor'])->get();
+        $appointments = Clase::with('monitor')->get();
 
         foreach ($appointments as $appointment) {
             $events[] = [
                 'id' => $appointment->idevent,
+                //'title' => $appointment->monitor->name,
                 'title' => explode(' ', $appointment->monitor->name)[0],
                 'start' => $appointment->fecha_hora,
                 'end' => $appointment->final,

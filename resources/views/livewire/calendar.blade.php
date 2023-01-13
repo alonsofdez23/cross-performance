@@ -94,6 +94,8 @@
         },
         eventReceive: info => @this.eventReceive(info.event),
         eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
+        eventClick: info => @this.eventClick(info.event),
+
         loading: function(isLoading) {
                 if (!isLoading) {
                     // Reset custom events
