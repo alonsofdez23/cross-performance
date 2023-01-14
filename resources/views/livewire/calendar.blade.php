@@ -17,7 +17,7 @@
                 </select>
 
                 @foreach ($this->tasks as $task)
-                    <div data-prueba='@json(['prueba' => 'prueba'])' data-event='@json(['id' => uniqid(), 'title' => $task])' class='cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                    <div data-event='@json(['id' => uniqid(), 'title' => $task])' class='cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
                         <div class='fc-event-main'>{{ $task}}</div>
                     </div>
                 @endforeach
