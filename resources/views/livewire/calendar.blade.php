@@ -81,13 +81,13 @@
 
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
-        drop: function(info) {
+        /* drop: function(info) {
             // is the "remove after drop" checkbox checked?
             if (checkbox.checked) {
             // if so, remove the element from the "Draggable Events" list
             info.draggedEl.parentNode.removeChild(info.draggedEl);
             }
-        },
+        }, */
         eventReceive: info => @this.eventReceive(info.event),
         eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
         eventClick: info => @this.eventClick(info.event),

@@ -52,6 +52,7 @@ class Calendar extends Component
 
     public function eventReceive($event)
     {
+        dd($event);
 
         Clase::create([
             'monitor_id' => Auth::id(),
