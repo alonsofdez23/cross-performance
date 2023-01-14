@@ -4,9 +4,10 @@
         <div>
 
             <div id='external-events'>
-                <p>
-                    <strong>Clases</strong>
-                </p>
+                <div class="mb-3">
+                    <label for="default-input" class="block mb-2 font-bold text-gray-700">Plazas disponibles</label>
+                    <input wire:model="vacantes" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+                </div>
 
                 <select wire:model="name" class="mb-3 bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
                     <option value="">Monitor</option>
@@ -20,16 +21,6 @@
                         <div class='fc-event-main'>{{ $task}}</div>
                     </div>
                 @endforeach
-
-                <div class="my-3">
-                    <label for="default-input" class="block mb-2 text-sm font-medium text-gray-700">Plazas disponibles</label>
-                    <input wire:model="vacantes" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
-                </div>
-
-                <p>
-                    <input type='checkbox' id='drop-remove' />
-                    <label for='drop-remove'>Borrar después de colocar</label>
-                </p>
 
                 <ul>
                     @foreach (array_reverse($events) as $event)
