@@ -12,6 +12,15 @@ class Calendar extends Component
 {
     public $name = 'admin';
     public $events = [];
+    public $vacantes;
+
+    public function mount()
+    {
+        if (Clase::latest()->first() != null) {
+            $this->vacantes = Clase::latest()->first()->vacantes;
+        }
+        $this->vacantes = 1;
+    }
 
     public function updatedName()
     {
@@ -43,10 +52,11 @@ class Calendar extends Component
 
     public function eventReceive($event)
     {
+
         Clase::create([
             'monitor_id' => Auth::id(),
             'fecha_hora' => Carbon::createFromTimeString($event['start'])->subHour(),
-            'vacantes' => 6,
+            'vacantes' => $this->vacantes,
             'idevent' => $event['id'],
         ]);
 
