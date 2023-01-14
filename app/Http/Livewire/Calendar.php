@@ -10,6 +10,8 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
+    public $open = false;
+
     public $name = 'admin';
     public $events = [];
     public $vacantes;
@@ -52,8 +54,6 @@ class Calendar extends Component
 
     public function eventReceive($event)
     {
-        dd($event);
-
         Clase::create([
             'monitor_id' => Auth::id(),
             'fecha_hora' => Carbon::createFromTimeString($event['start'])->subHour(),
@@ -79,6 +79,8 @@ class Calendar extends Component
 
         if ($clase->atletas->isEmpty()) {
             $clase->delete();
+        } else {
+            $this->open = true;
         }
 
         $this->emit("refreshCalendar");

@@ -29,6 +29,20 @@
                 </ul>
             </div>
 
+            <x-jet-dialog-modal wire:model="open">
+                <x-slot name="title">
+
+                </x-slot>
+                <x-slot name="content">
+
+                </x-slot>
+                <x-slot name="footer">
+                    <x-jet-secondary-button wire:click="$set('open', false)">
+                        Cancelar
+                    </x-jet-secondary-button>
+                </x-slot>
+            </x-jet-dialog-modal>
+
         </div>
 
         <div class="mt-5 md:mt-0 md:col-span-3">
