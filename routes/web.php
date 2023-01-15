@@ -6,6 +6,7 @@ use App\Http\Controllers\EntrenoController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Livewire\ChatComponent;
 use App\Http\Livewire\Clases\IndexClases;
+use App\Http\Livewire\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Roles
+    Route::get('/roles', Roles::class)->name('roles');
 
     // Calendario
     Route::get('/admin', [CalendarController::class, 'index'])
