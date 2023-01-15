@@ -34,7 +34,7 @@ Route::middleware([
     })->name('dashboard');
 
     // Calendario
-    Route::get('/admincal', [CalendarController::class, 'index'])
+    Route::get('/admin', [CalendarController::class, 'index'])
         ->name('adminpanel');
     Route::get('/crearclase', [CalendarController::class, 'crearclase'])
         ->name('crearclase');
