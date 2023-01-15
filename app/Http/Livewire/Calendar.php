@@ -10,7 +10,8 @@ use Livewire\Component;
 
 class Calendar extends Component
 {
-    public $open = false;
+    public $openOld = false;
+    public $openAtletas = false;
 
     public $events = [];
     public $vacantes;
@@ -55,10 +56,12 @@ class Calendar extends Component
     {
         $clase = Clase::where('idevent', $event['id'])->first();
 
-        if ($clase->atletas->isEmpty()) {
-            $clase->delete();
+        if ($clase->fecha_hora < Carbon::now()) {
+            $this->openOld = true;
+        } elseif ($clase->atletas->isNotEmpty()) {
+            $this->openAtletas = true;
         } else {
-            $this->open = true;
+            $clase->delete();
         }
 
         $this->emit("refreshCalendar");

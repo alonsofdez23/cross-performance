@@ -23,16 +23,44 @@
                 </ul>
             </div>
 
-            <x-jet-dialog-modal wire:model="open">
+            <x-jet-dialog-modal wire:model="openOld">
                 <x-slot name="title">
-
+                    <div class="flex justify-center my-6">
+                        <i class="fa-solid fa-triangle-exclamation fa-lg fa-beat"></i>
+                    </div>
+                    <div class="flex justify-center text-xl font-bold">
+                        Esta clase ya finalizó
+                    </div>
                 </x-slot>
                 <x-slot name="content">
-
+                    <div class="flex justify-center">
+                        No se pueden eliminar clases finalizadas
+                    </div>
                 </x-slot>
                 <x-slot name="footer">
-                    <x-jet-secondary-button wire:click="$set('open', false)">
-                        Cancelar
+                    <x-jet-secondary-button wire:click="$set('openOld', false)">
+                        Aceptar
+                    </x-jet-secondary-button>
+                </x-slot>
+            </x-jet-dialog-modal>
+
+            <x-jet-dialog-modal wire:model="openAtletas">
+                <x-slot name="title">
+                    <div class="flex justify-center my-6">
+                        <i class="fa-solid fa-triangle-exclamation fa-lg fa-beat"></i>
+                    </div>
+                    <div class="flex justify-center text-xl font-bold">
+                        Esta clase tiene atletas apuntados
+                    </div>
+                </x-slot>
+                <x-slot name="content">
+                    <div class="flex justify-center">
+                        No se pueden eliminar clases con atletas apuntados
+                    </div>
+                </x-slot>
+                <x-slot name="footer">
+                    <x-jet-secondary-button wire:click="$set('openAtletas', false)">
+                        Aceptar
                     </x-jet-secondary-button>
                 </x-slot>
             </x-jet-dialog-modal>
