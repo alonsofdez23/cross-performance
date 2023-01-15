@@ -25,7 +25,7 @@ class Calendar extends Component
 
     public function getMonitoresProperty()
     {
-        return User::role('admin')->get();
+        return User::role(['admin', 'coach'])->get();
     }
 
     public function eventReceive($event)
