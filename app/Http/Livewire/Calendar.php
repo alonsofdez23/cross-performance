@@ -12,54 +12,33 @@ class Calendar extends Component
 {
     public $open = false;
 
-    public $name = 'admin';
     public $events = [];
     public $vacantes;
+    public $monitor;
 
     public function mount()
     {
         if (Clase::latest()->first() != null) {
             $this->vacantes = Clase::latest()->first()->vacantes;
         }
-        $this->vacantes = 1;
-    }
-
-    public function updatedName()
-    {
-        $this->emit("refreshCalendar");
-    }
-
-    public function getNamesProperty()
-    {
-        return [
-            'admin',
-            'Barop',
-            'Caleb',
-        ];
+        $this->vacantes = 10;
     }
 
     public function getTasksProperty()
     {
-        switch ($this->name) {
-        case 'admin':
-            return ['CrossFit', 'Yoga', 'Halterofilia'];
-        case 'Barop':
-            return ['Laravel', 'Jetstream'];
-        case 'Caleb':
-            return ['Livewire', 'Sushi'];
-        }
-
-        return [];
+        return User::role('admin')->get();
     }
 
     public function eventReceive($event)
     {
         Clase::create([
-            'monitor_id' => Auth::id(),
+            'monitor_id' => $event['extendedProps']['idmonitor'],
             'fecha_hora' => Carbon::createFromTimeString($event['start'])->subHour(),
             'vacantes' => $this->vacantes,
             'idevent' => $event['id'],
         ]);
+
+        $this->emit("refreshCalendar");
 
         //$this->events[] = 'eventReceive: ' . print_r($event, true);
     }
@@ -84,8 +63,6 @@ class Calendar extends Component
         }
 
         $this->emit("refreshCalendar");
-
-        //dd($clase);
     }
 
     public function render()

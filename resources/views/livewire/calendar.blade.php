@@ -5,20 +5,21 @@
 
             <div id='external-events'>
                 <div class="mb-3">
-                    <label for="default-input" class="block mb-2 font-bold text-gray-700">Plazas disponibles</label>
-                    <input wire:model="vacantes" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+                    <label for="default-input" class="block mb-2 font-semibold text-gray-700">Plazas disponibles</label>
+                    <input wire:model="vacantes" type="number" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
                 </div>
 
-                <select wire:model="name" class="mb-3 bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+                {{-- <select wire:model="name" class="mb-3 bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
                     <option value="">Monitor</option>
                     @foreach ($this->names as $name)
                         <option value="{{ $name }}">{{ $name }}</option>
                     @endforeach
-                </select>
+                </select> --}}
 
+                <label for="default-input" class="block mb-2 font-semibold text-gray-700">Monitores</label>
                 @foreach ($this->tasks as $task)
-                    <div data-event='@json(['id' => uniqid(), 'title' => $task])' class='cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                        <div class='fc-event-main'>{{ $task}}</div>
+                    <div data-event='@json(['idmonitor' => $task->id, 'id' => uniqid(), 'title' => $task->name])' class='cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>{{ $task->name}}</div>
                     </div>
                 @endforeach
 
