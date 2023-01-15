@@ -14,7 +14,6 @@ class Calendar extends Component
 
     public $events = [];
     public $vacantes;
-    public $monitor;
 
     public function mount()
     {
@@ -24,7 +23,7 @@ class Calendar extends Component
         $this->vacantes = 10;
     }
 
-    public function getTasksProperty()
+    public function getMonitoresProperty()
     {
         return User::role('admin')->get();
     }

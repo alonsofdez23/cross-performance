@@ -9,17 +9,10 @@
                     <input wire:model="vacantes" type="number" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
                 </div>
 
-                {{-- <select wire:model="name" class="mb-3 bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
-                    <option value="">Monitor</option>
-                    @foreach ($this->names as $name)
-                        <option value="{{ $name }}">{{ $name }}</option>
-                    @endforeach
-                </select> --}}
-
                 <label for="default-input" class="block mb-2 font-semibold text-gray-700">Monitores</label>
-                @foreach ($this->tasks as $task)
-                    <div data-event='@json(['idmonitor' => $task->id, 'id' => uniqid(), 'title' => $task->name])' class='cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-                        <div class='fc-event-main'>{{ $task->name}}</div>
+                @foreach ($this->monitores as $monitor)
+                    <div data-event='@json(['idmonitor' => $monitor->id, 'id' => uniqid(), 'title' => $monitor->name])' class='bg-gray-700 cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                        <div class='fc-event-main'>{{ $monitor->name}}</div>
                     </div>
                 @endforeach
 
@@ -68,14 +61,14 @@
         var calendarEl = document.getElementById('calendar');
         var checkbox = document.getElementById('drop-remove');
 
-        // initialize the external events
+        // Inicializa eventos externos
         // -----------------------------------------------------------------
 
         new Draggable(containerEl, {
         itemSelector: '.fc-event'
         });
 
-        // initialize the calendar
+        // Inicializa calendario
         // -----------------------------------------------------------------
 
         var calendar = new Calendar(calendarEl, {
@@ -85,24 +78,26 @@
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
         },
         weekNumbers: false, // Numero semana del año
-        navLinks: true, // can click day/week names to navigate views
-        dayMaxEvents: true, // allow "more" link when too many events
+        navLinks: true, // Puede hacer click en días de la semana
+        dayMaxEvents: true, // Eventos tooltip
 
         locale: 'es',
         initialView: 'timeGridWeek',
-        slotMinTime: '8:00:00',
-        slotMaxTime: '22:00:00',
+        allDaySlot: false, // Ocultar visor todo el día
+        slotMinTime: '8:00:00', // Hora inicio día
+        slotMaxTime: '22:00:00', // Hora fin día
         height: 500,
+        eventColor: '#2d3f50', // Color eventos en calendario
+        dayHeaders: true,
+        dayHeaderFormat: {
+            weekday: 'short',
+            day: 'numeric',
+        },
+        slotDuration: '00:30:00', // Intervalo al dropear evento
 
         editable: true,
-        droppable: true, // this allows things to be dropped onto the calendar
-        /* drop: function(info) {
-            // is the "remove after drop" checkbox checked?
-            if (checkbox.checked) {
-            // if so, remove the element from the "Draggable Events" list
-            info.draggedEl.parentNode.removeChild(info.draggedEl);
-            }
-        }, */
+        droppable: true, // Permite drag/drop en eventos
+
         eventReceive: info => @this.eventReceive(info.event),
         eventDrop: info => @this.eventDrop(info.event, info.oldEvent),
         eventClick: info => @this.eventClick(info.event),
@@ -136,4 +131,18 @@
     });
 
     </script>
+
+    <style>
+        /* Eventos draggables */
+        .fc-h-event {
+            border: 1px solid #2d3f50;
+            border: 1px solid var(--fc-event-border-color, #2d3f50);
+            background-color: #2d3f50;
+            background-color: var(--fc-event-bg-color, #2d3f50)
+        }
+        /* Selector día actual */
+        .fc-day-today {
+            background: !important;
+        }
+    </style>
 @endpush
