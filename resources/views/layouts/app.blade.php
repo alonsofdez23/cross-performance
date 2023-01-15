@@ -27,6 +27,7 @@
         <!-- Styles -->
         @livewireStyles
         <link href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 
         @stack('css')
     </head>
@@ -57,6 +58,8 @@
         @yield('scripts')
 
         @stack('js')
+
+        @stack('cal')
 
         @isset($js)
             {{ $js }}

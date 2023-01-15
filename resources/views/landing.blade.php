@@ -50,7 +50,7 @@
 
 		<div class="w-full flex items-center justify-between">
             <div class="flex items-center text-gray-700 font-bold text-2xl lg:text-4xl">
-                <img src="http://localhost:8000/storage/svg/dumbbell.svg" class="h-12 text-gray-700 pr-2"> Cross Performance
+                <img src="http://localhost:8000/storage/svg/dumbbell.svg" class="h-12 text-gray-700 pr-2"> <b>Cross</b>Performance
             </div>
 
 			<div class="flex w-1/2 justify-end content-center">

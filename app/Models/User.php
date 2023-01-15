@@ -129,4 +129,16 @@ class User extends Authenticatable
             }
         }));
     }
+
+    public function adminlte_image() {
+        return $this->profile_photo_url;
+    }
+
+    public function adminlte_desc() {
+        return $this->getRoleNames()->first();
+    }
+
+    public function adminlte_profile_url() {
+        return "admin";
+    }
 }
