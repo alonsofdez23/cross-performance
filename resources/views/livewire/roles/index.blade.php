@@ -32,6 +32,7 @@
                                 <tr class="bg-white border-b hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-base font-semibold text-gray-900">
                                         {{ $rol->name }}
+                                        <i wire:click="addUser({{$rol}})" class="fa-solid fa-user-plus cursor-pointer ml-5"></i>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -60,6 +61,7 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-end">
+
                                         <x-jet-danger-button wire:click="edit({{$rol}})" class="bg-gray-600 hover:bg-gray-500 focus:border-gray-700 focus:ring focus:ring-gray-200 active:bg-gray-600 mr-2">Editar</x-jet-danger-button>
                                         @if ($rol->users->isEmpty())
                                             <x-jet-danger-button wire:click="$emit('delete', {{$rol}})">Eliminar</x-jet-danger-button>

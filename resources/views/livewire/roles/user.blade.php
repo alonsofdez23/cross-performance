@@ -9,9 +9,18 @@
     <x-slot name="content">
 
         <div class="mb-4">
-            <x-jet-label value="Nombre del rol" />
-            <x-jet-input type="text" class="w-full" wire:model="name" />
-            @error('name') <span class="error text-red-500">{{ $message }}</span> @enderror
+            <x-jet-label value="Selecciona usuario" />
+
+            <select wire:model="usuarios" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+                <option selected>Choose a country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+                @foreach ($usuarios as $usuario)
+                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                @endforeach
+            </select>
         </div>
 
     </x-slot>

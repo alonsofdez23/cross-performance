@@ -12,7 +12,9 @@ class Roles extends Component
     public $openEdit = false;
     public $openUser = false;
 
-    public $name, $rol, $permiso_seleccionados = [];
+    public $usuarios;
+
+    public $name, $rol;
 
     protected $rules = [
         'rol.name' => 'required|min:4|string',
@@ -24,6 +26,11 @@ class Roles extends Component
         'name.required' => 'El nombre del rol es obligatorio.',
         'name.min' => 'El nombre del rol debe contener al menos 4 caracteres.',
     ];
+
+    public function mount()
+    {
+        $this->usuarios = User::all();
+    }
 
     public function cerrarModalEdit()
     {
@@ -69,9 +76,12 @@ class Roles extends Component
 
     public function removeRol(User $user, Role $rol)
     {
-        //dd($rol);
-
         $user->removeRole($rol);
+    }
+
+    public function addUser(Role $rol)
+    {
+        $this->openUser = true;
     }
 
     public function render()
