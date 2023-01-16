@@ -12,27 +12,60 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
                     {{-- <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link> --}}
-                    <x-jet-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
-                        Clases
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.index')">
-                        Chat
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
-                        Pagos
-                    </x-jet-nav-link>
-                    @role('admin')
-                    <x-jet-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
-                        Entrenos
-                    </x-jet-nav-link>
-                    @endrole
+                    @if (
+                        request()->routeIs('usuarios') ||
+                        request()->routeIs('roles') ||
+                        request()->routeIs('calendario')
+                    )
+                        <x-jet-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                            Usuarios
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('roles') }}" :active="request()->routeIs('roles')">
+                            Roles
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
+                            Calendario
+                        </x-jet-nav-link>
+                    @else
+                        <x-jet-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
+                            Clases
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.index')">
+                            Chat
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                            Pagos
+                        </x-jet-nav-link>
+                        @role('admin')
+                            <x-jet-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
+                                Entrenos
+                            </x-jet-nav-link>
+                        @endrole
+                    @endif
+
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+
+                <!-- Salir modo admin -->
+                @if (
+                    request()->routeIs('usuarios') ||
+                    request()->routeIs('roles') ||
+                    request()->routeIs('calendario')
+                )
+                    <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span class="ml-2 font-bold">Salir</span>
+                        </a>
+                    </button>
+                @endif
+
                 <!-- Alerta Suscripción -->
                 @if (!Auth::user()->subscribed('Full Box'))
                     <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
@@ -166,23 +199,41 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+
             {{-- <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link> --}}
-            <x-jet-responsive-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
-                Clases
-            </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.index')">
-                Chat
-            </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
-                Pagos
-            </x-jet-responsive-nav-link>
-            @role('admin')
-            <x-jet-responsive-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
-                Entrenos
-            </x-jet-responsive-nav-link>
-            @endrole
+            @if (
+                request()->routeIs('usuarios') ||
+                request()->routeIs('roles') ||
+                request()->routeIs('calendario')
+            )
+                <x-jet-responsive-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
+                    Usuarios
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('roles') }}" :active="request()->routeIs('roles')">
+                    Roles
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('calendario') }}" :active="request()->routeIs('calendario')">
+                    Calendario
+                </x-jet-responsive-nav-link>
+            @else
+                <x-jet-responsive-nav-link href="{{ route('clases.index') }}" :active="request()->routeIs('clases.index')">
+                    Clases
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.index')">
+                    Chat
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
+                    Pagos
+                </x-jet-responsive-nav-link>
+                @role('admin')
+                    <x-jet-responsive-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
+                        Entrenos
+                    </x-jet-responsive-nav-link>
+                @endrole
+            @endif
+
         </div>
 
         <!-- Responsive Settings Options -->
@@ -232,7 +283,21 @@
                     </x-jet-responsive-nav-link>
                 </form>
 
-                <!-- Alerta Suscripción -->
+                <!-- Salir modo admin responsive -->
+                @if (
+                    request()->routeIs('usuarios') ||
+                    request()->routeIs('roles') ||
+                    request()->routeIs('calendario')
+                )
+                    <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span class="ml-2 font-bold">Salir</span>
+                        </a>
+                    </button>
+                @endif
+
+                <!-- Alerta Suscripción responsive -->
                 @if (!Auth::user()->subscribed('Full Box'))
                     <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
                         <a href="{{ route('billing.index') }}">
