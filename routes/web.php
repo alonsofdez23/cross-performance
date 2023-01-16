@@ -53,10 +53,11 @@ Route::middleware([
         // Calendario
         Route::get('/calendario', [CalendarController::class, 'index'])
             ->name('calendario');
-        // Obtención de eventos para el calendario
-        Route::get('/admincalget', [CalendarController::class, 'getclase'])
-        ->name('getclase');
     });
+
+    // Obtención de eventos para el calendario
+    Route::get('/admincalget', [CalendarController::class, 'getclase'])
+    ->name('getclase');
 
     Route::group([
         'middleware' => ['role:admin'],
