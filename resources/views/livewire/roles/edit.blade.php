@@ -17,7 +17,7 @@
 
     <x-slot name="footer">
 
-        <x-jet-secondary-button wire:click="cerrarModalEdit" wire:loading.remove class="mr-2">
+        <x-jet-secondary-button wire:click="$set('openEdit', false)" wire:loading.remove class="mr-2">
             Cancelar
         </x-jet-secondary-button>
 

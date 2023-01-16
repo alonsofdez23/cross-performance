@@ -20,7 +20,10 @@ class Roles extends Component
         'rol.name' => 'required|min:4|string',
     ];
 
-    protected $listeners = ['render', 'delete'];
+    protected $listeners = [
+        'render',
+        'delete'
+    ];
 
     protected $messages = [
         'name.required' => 'El nombre del rol es obligatorio.',
@@ -79,15 +82,10 @@ class Roles extends Component
         $user->removeRole($rol);
     }
 
-    public function addUser(Role $rol)
-    {
-        $this->openUser = true;
-    }
-
     public function render()
     {
         return view('livewire.roles.index', [
-            'roles' => Role::all(),
+            'roles' => Role::all()->sortBy('id'),
         ]);
     }
 }

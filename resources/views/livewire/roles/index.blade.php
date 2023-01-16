@@ -32,7 +32,6 @@
                                 <tr class="bg-white border-b hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-base font-semibold text-gray-900">
                                         {{ $rol->name }}
-                                        <i wire:click="addUser({{$rol}})" class="fa-solid fa-user-plus cursor-pointer ml-5"></i>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -84,10 +83,6 @@
 
         @if ($openEdit)
             @include('livewire.roles.edit')
-        @endif
-
-        @if ($openUser)
-            @include('livewire.roles.user')
         @endif
     </div>
 </div>
