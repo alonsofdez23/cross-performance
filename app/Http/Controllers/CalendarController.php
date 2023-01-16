@@ -28,14 +28,6 @@ class CalendarController extends Controller
         ]);
     }
 
-    public function crearclase(Request $request)
-    {
-        $data = $request->except('_token');
-        dd($data);
-        $clases = Clase::insert($data);
-        return response()->json($clases);
-    }
-
     public function getclase()
     {
         $events = [];
