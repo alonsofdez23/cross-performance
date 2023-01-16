@@ -73,7 +73,7 @@
                             </span>
                             <h3 class="flex items-center ml-2 mb-1 text-xl font-semibold text-gray-900">{{ $clase->fecha_hora->tz('Europe/Madrid')->format('G.i') }}
                             <div class="flex-shrink-0 ml-3">
-                                <img class="w-10 h-10 rounded-full" src="{{ $clase->monitor->profile_photo_url }}" alt="{{ $clase->monitor->name }}">
+                                <img class="w-10 h-10 rounded-md" src="{{ $clase->monitor->profile_photo_url }}" alt="{{ $clase->monitor->name }}">
                             </div>
 
                                 <!-- Plazas disponibles -->
@@ -108,7 +108,7 @@
                                 </button>
                                 @endif
 
-                                @role('admin')
+                                @hasanyrole('admin|coach')
                                 @if ($clase->entreno_id == null)
                                     <form action="{{ route('clases.addentreno', $clase) }}" method="GET">
                                         @csrf
@@ -130,7 +130,7 @@
                                         </button>
                                     </form>
                                 @endif
-                                @endrole
+                                @endhasanyrole
 
                             </h3>
 
@@ -139,13 +139,13 @@
                                 @foreach ($clase->atletas as $atleta)
                                     <div class="flex -space-x-4 -space-y-2">
                                         <img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
-                                        @role('admin')
+                                        @hasanyrole('admin|coach')
                                             <button wire:click="delete({{ $atleta }}, {{ $clase }})" type="submit" class="w-5 h-5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#fecaca" viewBox="0 0 24 24" stroke-width="1.5" stroke="#991b1b" class="w-7 h-7 hover:fill-red-300">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                             </button>
-                                        @endrole
+                                        @endhasanyrole
                                     </div>
                                 @endforeach
                                 @for ($i = 0; $i < $clase->vacantes; $i++)
@@ -178,7 +178,7 @@
 
                             <!-- Select atleta a clase -->
                             @if ($clase->vacantes != 0)
-                                @role('admin')
+                                @hasanyrole('admin|coach')
                                     <form wire:submit="submit({{ $clase->id }})" class="flex">
                                         <div class="flex mx-3">
                                             <x-select
@@ -198,7 +198,7 @@
                                         </div>
 
                                     </form>
-                                @endrole
+                                @endhasanyrole
                             @endif
 
                         </div>

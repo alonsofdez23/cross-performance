@@ -60,7 +60,7 @@ Route::middleware([
     ->name('getclase');
 
     Route::group([
-        'middleware' => ['role:admin'],
+        'middleware' => ['role:admin|coach'],
     ], function() {
         // Entrenos
         Route::resource('/entrenos', EntrenoController::class);

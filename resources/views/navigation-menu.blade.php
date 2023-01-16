@@ -40,11 +40,11 @@
                         <x-jet-nav-link href="{{ route('billing.index') }}" :active="request()->routeIs('billing.index')">
                             Pagos
                         </x-jet-nav-link>
-                        @role('admin')
+                        @hasanyrole('admin|coach')
                             <x-jet-nav-link href="{{ route('entrenos.index') }}" :active="request()->routeIs('entrenos.index')">
                                 Entrenos
                             </x-jet-nav-link>
-                        @endrole
+                        @endhasanyrole
                     @endif
 
                 </div>
