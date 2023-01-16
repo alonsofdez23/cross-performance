@@ -74,10 +74,12 @@ class IndexClases extends Component
 
     public function submit(Clase $clase)
     {
-        $clase->atletas()->attach($this->atleta);
+        if ($this->atleta != null) {
+            $clase->atletas()->attach($this->atleta);
 
-        $clase->vacantes = $clase->vacantes -1;
-        $clase->save();
+            $clase->vacantes = $clase->vacantes -1;
+            $clase->save();
+        }
     }
 
     public function render()
