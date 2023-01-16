@@ -124,7 +124,7 @@
                             </x-jet-dropdown-link>
 
                             @role('admin')
-                                <x-jet-dropdown-link href="{{ route('adminpanel') }}">
+                                <x-jet-dropdown-link href="{{ route('usuarios') }}">
                                     Panel administrador
                                 </x-jet-dropdown-link>
                             @endrole
@@ -207,7 +207,7 @@
                 </x-jet-responsive-nav-link>
 
                 @role('admin')
-                    <x-jet-responsive-nav-link href="{{ route('adminpanel') }}" :active="request()->routeIs('adminpanel')">
+                    <x-jet-responsive-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
                         Panel administrador
                     </x-jet-responsive-nav-link>
                 @endrole
