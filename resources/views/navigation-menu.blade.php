@@ -68,12 +68,7 @@
 
                 <!-- Alerta Suscripción -->
                 @if (!Auth::user()->subscribed('Full Box'))
-                    <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
-                        <a href="{{ route('billing.index') }}">
-                            <i class="fa-solid fa-bell fa-beat"></i>
-                            <span class="ml-2 font-bold">Apúntate</span>
-                        </a>
-                    </button>
+                    @livewire('alerta-pago')
                 @endif
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -299,12 +294,7 @@
 
                 <!-- Alerta Suscripción responsive -->
                 @if (!Auth::user()->subscribed('Full Box'))
-                    <button class="text-gray-600 rounded-md px-4 py-2 transition-colors">
-                        <a href="{{ route('billing.index') }}">
-                            <i class="fa-solid fa-bell fa-beat"></i>
-                            <span class="ml-2 font-bold">Apúntate</span>
-                        </a>
-                    </button>
+                    @livewire('alerta-pago')
                 @endif
                 <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())

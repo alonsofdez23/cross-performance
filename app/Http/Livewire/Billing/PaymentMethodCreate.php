@@ -34,5 +34,6 @@ class PaymentMethodCreate extends Component
 
         $this->emitTo('billing.payment-method-list', 'render');
         $this->emitTo('billing.subscriptions', 'render');
+        $this->emitTo('alerta-pago', 'render');
     }
 }
