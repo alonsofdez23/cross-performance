@@ -94,9 +94,14 @@ class EntrenoController extends Controller
      */
     public function destroy(Entreno $entreno)
     {
-        $entreno->delete();
+        if ($entreno->clases->isNotEmpty()) {
+            return redirect()->route('entrenos.index')
+                ->with('error', "Entreno $entreno->denominacion asignado a clase. No puede borrarse");
+        } else {
+            $entreno->delete();
 
-        return redirect()->route('entrenos.index')
-            ->with('success', "Entreno $entreno->denominacion borrado correctamente");
+            return redirect()->route('entrenos.index')
+                ->with('success', "Entreno $entreno->denominacion borrado correctamente");
+        }
     }
 }
