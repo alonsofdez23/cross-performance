@@ -72,6 +72,9 @@
                                 <svg aria-hidden="true" class="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
                             </span>
                             <h3 class="flex items-center ml-2 mb-1 text-xl font-semibold text-gray-900">{{ $clase->fecha_hora->tz('Europe/Madrid')->format('G.i') }}
+                            <div class="flex-shrink-0 ml-3">
+                                <img class="w-10 h-10 rounded-md" src="{{ $clase->monitor->profile_photo_url }}" alt="{{ $clase->monitor->name }}">
+                            </div>
 
                                 <!-- Plazas disponibles -->
                                 @if (!$clase->vacantes == 0)
@@ -86,7 +89,10 @@
                                     </button>
                                 @else
                                     <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-red-800 bg-red-200 rounded-md">
-                                        Plazas disponibles
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                        </svg>
+
                                         <span class="inline-flex justify-center items-center ml-2 w-5 h-5 text-base font-semibold text-red-200 bg-red-800 rounded-md">
                                         {{ $clase->vacantes }}
                                         </span>
@@ -102,13 +108,13 @@
                                 </button>
                                 @endif
 
-                                @role('admin')
+                                @hasanyrole('admin|coach')
                                 @if ($clase->entreno_id == null)
                                     <form action="{{ route('clases.addentreno', $clase) }}" method="GET">
                                         @csrf
                                         @method('GET')
-                                        <button type="submit" class="inline-flex items-center ml-4 py-2 px-4 text-sm font-medium text-gray-900 bg-green-200 rounded-md border border-gray-200 hover:bg-green-200 hover:text-gray-700">
-                                            <svg aria-hidden="true" class="w-5 h-5 fill-current text-green-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <button type="submit" class="inline-flex items-center ml-4 py-2 px-4 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-200 hover:text-gray-700">
+                                            <svg aria-hidden="true" class="w-5 h-5 fill-current text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
                                         </button>
@@ -124,7 +130,7 @@
                                         </button>
                                     </form>
                                 @endif
-                                @endrole
+                                @endhasanyrole
 
                             </h3>
 
@@ -133,13 +139,13 @@
                                 @foreach ($clase->atletas as $atleta)
                                     <div class="flex -space-x-4 -space-y-2">
                                         <img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
-                                        @role('admin')
+                                        @hasanyrole('admin|coach')
                                             <button wire:click="delete({{ $atleta }}, {{ $clase }})" type="submit" class="w-5 h-5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#fecaca" viewBox="0 0 24 24" stroke-width="1.5" stroke="#991b1b" class="w-7 h-7 hover:fill-red-300">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                             </button>
-                                        @endrole
+                                        @endhasanyrole
                                     </div>
                                 @endforeach
                                 @for ($i = 0; $i < $clase->vacantes; $i++)
@@ -172,7 +178,7 @@
 
                             <!-- Select atleta a clase -->
                             @if ($clase->vacantes != 0)
-                                @role('admin')
+                                @hasanyrole('admin|coach')
                                     <form wire:submit="submit({{ $clase->id }})" class="flex">
                                         <div class="flex mx-3">
                                             <x-select
@@ -184,7 +190,7 @@
                                                 @endforeach
                                             </x-select>
 
-                                            <button type="submit" class="ml-3 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-green-200 rounded-md border border-gray-200 hover:bg-green-300 hover:text-gray-700">
+                                            <button type="submit" class="ml-3 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-300 hover:text-gray-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                                 </svg>
@@ -192,7 +198,7 @@
                                         </div>
 
                                     </form>
-                                @endrole
+                                @endhasanyrole
                             @endif
 
                         </div>
