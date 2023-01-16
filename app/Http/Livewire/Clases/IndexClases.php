@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class IndexClases extends Component
 {
@@ -80,10 +81,18 @@ class IndexClases extends Component
             $clase->vacantes = $clase->vacantes -1;
             $clase->save();
         }
+
+        return redirect()->route('clases.index');
+
+        /* if (session('clase_url')) {
+            return redirect(session('clase_url'));
+        } */
     }
 
     public function render()
     {
+        /* Session::put('clase_url', request()->fullUrl()); */
+
         $clases = Clase::whereDate('fecha_hora', $this->pickDay)->get()
             ->sortBy('fecha_hora');
 
