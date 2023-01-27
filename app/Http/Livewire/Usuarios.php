@@ -56,7 +56,7 @@ class Usuarios extends Component
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required|string|min:6',
-            'roles_seleccionados' => 'required|exists:roles,name',
+            'roles_seleccionados' => 'exists:roles,name',
         ]);
 
         $user = User::create([
