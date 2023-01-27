@@ -62,7 +62,7 @@
                                                     </p>
 
                                                     <p class="text-sm text-gray-500 mt-1 truncate">
-                                                        {{ $chatItem->mensajes->last()->body }}
+                                                        {{ $chatItem->mensajes->sortBy('created_at')->last()->body }}
                                                     </p>
                                                 </div>
 

@@ -40,7 +40,7 @@ class ChatComponent extends Component
 
     public function getMensajesProperty()
     {
-        return $this->chat ? Mensaje::where('chat_id', $this->chat->id)->get() : [];
+        return $this->chat ? Mensaje::where('chat_id', $this->chat->id)->get()->sortBy('created_at') : [];
         //$this->chat->mensajes()->get()
     }
 
