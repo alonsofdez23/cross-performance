@@ -179,16 +179,24 @@
                             <!-- Select atleta a clase -->
                             @if ($clase->vacantes != 0)
                                 @hasanyrole('admin|coach')
-                                    <form wire:submit="submit({{ $clase->id }})" class="flex">
+                                    <form wire:submit.prevent="submit({{ $clase->id }})" class="flex">
                                         <div class="flex mx-3">
-                                            <x-select
+                                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-gray-500 focus:border-gray-500"
+                                                placeholder="Selecciona atleta" wire:model="atleta">
+                                                <option hidden selected>Selecciona atleta</option>
+                                                @foreach ($users->diff($clase->atletas) as $atleta)
+                                                    <option src="{{ $atleta->profile_photo_url }}" label="{{ $atleta->name }}" value="{{ $atleta->id }}" />
+                                                @endforeach
+                                            </select>
+
+                                            {{-- <x-select
                                                 placeholder="Selecciona atleta"
-                                                wire:model.defer="atleta"
+                                                wire:model="atleta"
                                                 >
                                                 @foreach ($users->diff($clase->atletas) as $atleta)
                                                     <x-select.user-option src="{{ $atleta->profile_photo_url }}" label="{{ $atleta->name }}" value="{{ $atleta->id }}" />
                                                 @endforeach
-                                            </x-select>
+                                            </x-select> --}}
 
                                             <button type="submit" class="ml-3 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-300 hover:text-gray-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

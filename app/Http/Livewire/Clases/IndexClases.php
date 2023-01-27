@@ -82,8 +82,6 @@ class IndexClases extends Component
             $clase->save();
         }
 
-        return redirect()->route('clases.index');
-
         /* if (session('clase_url')) {
             return redirect(session('clase_url'));
         } */
