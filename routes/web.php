@@ -63,7 +63,13 @@ Route::middleware([
         'middleware' => ['role:admin|coach'],
     ], function() {
         // Entrenos
-        Route::resource('/entrenos', EntrenoController::class);
+        Route::get('/entrenos', [EntrenoController::class, 'index'])->name('entrenos.index');
+        Route::get('/entrenos/create', [EntrenoController::class, 'create'])->name('entrenos.create');
+        Route::post('/entrenos', [EntrenoController::class, 'store'])->name('entrenos.store');
+        Route::get('/entrenos/{entreno}/edit', [EntrenoController::class, 'edit'])->name('entrenos.edit');
+        Route::put('/entrenos/{entreno}', [EntrenoController::class, 'update'])->name('entrenos.update');
+        Route::delete('/entrenos/{entreno}', [EntrenoController::class, 'destroy'])->name('entrenos.destroy');
+
         Route::get('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntreno'])
             ->name('clases.addentreno');
         Route::post('/clases/{clase}/addEntreno', [ClaseController::class, 'addEntrenoUpdate'])
@@ -71,6 +77,9 @@ Route::middleware([
         Route::post('/clases/{clase}/deleteEntreno', [ClaseController::class, 'deleteEntrenoUpdate'])
             ->name('clases.deleteentreno.update');
     });
+
+    // Show Entreno para atletas
+    Route::get('/entrenos/{entreno}', [EntrenoController::class, 'show'])->name('entrenos.show');
 
     // Facturación
     Route::get('/billing', [BillingController::class, 'index'])
