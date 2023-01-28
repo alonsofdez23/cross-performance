@@ -13,7 +13,7 @@
         <!-- Scripts -->
         @wireUiScripts
         @vite([
-            'resources/css/app.css',
+            //'resources/css/app.css',
             'resources/css/forms.css',
             'resources/css/spinner.css',
             'vendor/fortawesome/font-awesome/css/all.min.css',
