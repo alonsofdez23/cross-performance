@@ -8,5 +8,15 @@
     "file": "assets/app.053f0427.css",
     "src": "resources/css/app.css",
     "isEntry": true
+  },
+  "resources/css/forms.css": {
+    "file": "assets/forms.css",
+    "src": "resources/css/forms.css",
+    "isEntry": true
+  },
+  "resources/css/spinner.css": {
+    "file": "assets/spinner.css",
+    "src": "resources/css/spinner.css",
+    "isEntry": true
   }
 }
