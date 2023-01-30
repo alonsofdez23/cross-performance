@@ -15,6 +15,10 @@ class IndexClases extends Component
     public $pickDay;
     public $atleta;
 
+    public $openUser = false;
+
+    public $name, $email, $avatar;
+
     protected $queryString = [
         'pickDay',
     ];
@@ -85,6 +89,24 @@ class IndexClases extends Component
         /* if (session('clase_url')) {
             return redirect(session('clase_url'));
         } */
+    }
+
+    public function showUser(User $atleta)
+    {
+        $this->openUser = true;
+
+        $this->name = $atleta->name;
+        $this->email = $atleta->email;
+        $this->avatar = $atleta->profile_photo_url;
+    }
+
+    public function showMonitor(Clase $clase)
+    {
+        $this->openUser = true;
+
+        $this->name = $clase->monitor->name;
+        $this->email = $clase->monitor->email;
+        $this->avatar = $clase->monitor->profile_photo_url;
     }
 
     public function render()

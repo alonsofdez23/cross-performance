@@ -73,7 +73,7 @@
                             </span>
                             <h3 class="flex items-center ml-2 mb-1 text-xl font-semibold text-gray-900">{{ $clase->fecha_hora->tz('Europe/Madrid')->format('G.i') }}
                             <div class="flex-shrink-0 ml-3">
-                                <img class="w-10 h-10 rounded-md" src="{{ $clase->monitor->profile_photo_url }}" alt="{{ $clase->monitor->name }}">
+                                <img wire:click="showMonitor({{$clase}})" class="w-10 h-10 rounded-md cursor-pointer" src="{{ $clase->monitor->profile_photo_url }}" alt="{{ $clase->monitor->name }}">
                             </div>
 
                                 <!-- Plazas disponibles -->
@@ -138,7 +138,7 @@
                             <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
                                 @foreach ($clase->atletas as $atleta)
                                     <div class="flex -space-x-4 -space-y-2">
-                                        <img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
+                                        <img wire:click="showUser({{$atleta}})" class="rounded-2xl cursor-pointer" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
                                         @hasanyrole('admin|coach')
                                             <button wire:click="delete({{ $atleta }}, {{ $clase }})" type="submit" class="w-5 h-5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#fecaca" viewBox="0 0 24 24" stroke-width="1.5" stroke="#991b1b" class="w-7 h-7 hover:fill-red-300">
@@ -221,6 +221,30 @@
 
     </div>
 </div>
+
+<x-jet-dialog-modal wire:model="openUser">
+
+    <x-slot name="title">
+    </x-slot>
+
+    <x-slot name="content">
+
+        <div class="flex flex-col items-center">
+            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ $this->avatar }}" alt="{{ $this->name }}"/>
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $this->name }}</h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{ $this->email }}</span>
+        </div>
+
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-jet-button wire:click="$set('openUser', false)">
+            Cerrar
+        </x-jet-button>
+    </x-slot>
+
+</x-jet-dialog-modal>
+
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
