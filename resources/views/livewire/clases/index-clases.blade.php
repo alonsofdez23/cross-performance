@@ -295,3 +295,13 @@
     })
 </script>
 @endsection
+
+@section('select2')
+    <script>
+        document.addEventListener('livewire:load', function(){
+            $('.select2').select2({
+                placeholder: 'Selecciona entreno',
+            });
+        })
+    </script>
+@endsection
