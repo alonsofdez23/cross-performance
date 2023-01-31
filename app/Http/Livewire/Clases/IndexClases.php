@@ -95,6 +95,12 @@ class IndexClases extends Component
         } */
     }
 
+    public function deleteEntreno(Clase $clase)
+    {
+        $clase->entreno_id = null;
+        $clase->save();
+    }
+
     public function showUser(User $atleta)
     {
         $this->openUser = true;
