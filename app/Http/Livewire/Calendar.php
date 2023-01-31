@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Clase;
+use App\Models\Entreno;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ class Calendar extends Component
     public $openAtletas = false;
 
     public $events = [];
+    public $entreno;
     public $vacantes;
 
     public function mount()
@@ -31,8 +33,13 @@ class Calendar extends Component
 
     public function eventReceive($event)
     {
+        if ($this->entreno == 'vacio') {
+            $this->entreno = null;
+        }
+
         Clase::create([
             'monitor_id' => $event['extendedProps']['idmonitor'],
+            'entreno_id' => $this->entreno,
             'fecha_hora' => Carbon::createFromTimeString($event['start'])->subHour(),
             'vacantes' => $this->vacantes,
             'idevent' => $event['id'],
@@ -69,6 +76,8 @@ class Calendar extends Component
 
     public function render()
     {
-        return view('livewire.calendar');
+        return view('livewire.calendar', [
+            'entrenos' => Entreno::all(),
+        ]);
     }
 }

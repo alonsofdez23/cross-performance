@@ -18,6 +18,7 @@ class Clase extends Model
 
     protected $fillable = [
         'monitor_id',
+        'entreno_id',
         'fecha_hora',
         'vacantes',
         'final',
