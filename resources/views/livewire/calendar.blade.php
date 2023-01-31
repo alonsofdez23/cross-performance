@@ -9,6 +9,17 @@
                     <input wire:model="vacantes" type="number" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
                 </div>
 
+                <div class="mb-3">
+                    <label for="default-input" class="block mb-2 font-semibold text-gray-700">Entrenamiento</label>
+                    <select wire:model="entreno" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5">
+                        <option selected value="vacio">Sin entrenamiento</option>
+                        @foreach ($entrenos as $entreno)
+                            <option value="{{ $entreno->id }}">{{ $entreno->denominacion }}</option>
+                        @endforeach
+                    </select>
+                    {{-- <input wire:model="entreno" type="number" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5"> --}}
+                </div>
+
                 <label for="default-input" class="block mb-2 font-semibold text-gray-700">Monitores</label>
                 @foreach ($this->monitores as $monitor)
                     <div data-event='@json(['idmonitor' => $monitor->id, 'id' => uniqid(), 'title' => $monitor->name])' class='bg-gray-700 cursor-move my-0.5 p-1 px-3 fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>

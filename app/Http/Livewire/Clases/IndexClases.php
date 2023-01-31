@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Clases;
 
 use App\Models\Clase;
+use App\Models\Entreno;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,6 +15,15 @@ class IndexClases extends Component
 {
     public $pickDay;
     public $atleta;
+    public $entrenoJoin;
+
+    public $openUser = false;
+
+    public $name, $email, $avatar;
+
+    public $openEntreno = false;
+
+    public $denominacion, $entreno;
 
     protected $queryString = [
         'pickDay',
@@ -87,6 +97,44 @@ class IndexClases extends Component
         } */
     }
 
+    public function addEntreno(Clase $clase)
+    {
+        $clase->entreno_id = $this->entrenoJoin;
+        $clase->save();
+    }
+
+    public function deleteEntreno(Clase $clase)
+    {
+        $clase->entreno_id = null;
+        $clase->save();
+    }
+
+    public function showUser(User $atleta)
+    {
+        $this->openUser = true;
+
+        $this->name = $atleta->name;
+        $this->email = $atleta->email;
+        $this->avatar = $atleta->profile_photo_url;
+    }
+
+    public function showMonitor(Clase $clase)
+    {
+        $this->openUser = true;
+
+        $this->name = $clase->monitor->name;
+        $this->email = $clase->monitor->email;
+        $this->avatar = $clase->monitor->profile_photo_url;
+    }
+
+    public function showEntreno(Clase $clase)
+    {
+        $this->openEntreno = true;
+
+        $this->denominacion = $clase->entreno->denominacion;
+        $this->entreno = $clase->entreno->entreno;
+    }
+
     public function render()
     {
         /* Session::put('clase_url', request()->fullUrl()); */
@@ -97,6 +145,7 @@ class IndexClases extends Component
         return view('livewire.clases.index-clases', [
             'clases' => $clases,
             'users' => User::all()->sortBy('id'),
+            'entrenos' => Entreno::all(),
         ]);
     }
 }

@@ -14,8 +14,8 @@
                         <input type="text" value="{{ $entreno->denominacion }}" name="denominacion" id="titulo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5" required="">
                     </div>
                     <div class="mb-6">
-                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Entreno</label>
-                        <textarea id="message" name="entreno" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500">{{ $entreno->entreno }}</textarea>
+                        <label for="entreno" class="block mb-2 text-sm font-medium text-gray-900">Entreno</label>
+                        <textarea id="entreno" name="entreno" rows="12" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500">{{ $entreno->entreno }}</textarea>
                     </div>
 
                     <div class="flex justify-center pb-4" role="group">
@@ -42,4 +42,18 @@
 
         </div>
     </div>
+    @push('ckeditor')
+        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/translations/es.js"></script>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#entreno'), {
+                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+                    language: 'es',
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    @endpush
 </x-app-layout>

@@ -73,12 +73,12 @@
                             </span>
                             <h3 class="flex items-center ml-2 mb-1 text-xl font-semibold text-gray-900">{{ $clase->fecha_hora->tz('Europe/Madrid')->format('G.i') }}
                             <div class="flex-shrink-0 ml-3">
-                                <img class="w-10 h-10 rounded-md" src="{{ $clase->monitor->profile_photo_url }}" alt="{{ $clase->monitor->name }}">
+                                <img wire:click="showMonitor({{$clase}})" class="w-10 h-10 rounded-md cursor-pointer" src="{{ $clase->monitor->profile_photo_url }}" alt="{{ $clase->monitor->name }}">
                             </div>
 
                                 <!-- Plazas disponibles -->
                                 @if (!$clase->vacantes == 0)
-                                    <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-green-800 bg-green-200 rounded-md">
+                                    <button type="button" class="cursor-default inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-green-800 bg-green-200 rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                         </svg>
@@ -88,7 +88,7 @@
                                         </span>
                                     </button>
                                 @else
-                                    <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-red-800 bg-red-200 rounded-md">
+                                    <button type="button" class="cursor-default inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-red-800 bg-red-200 rounded-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                         </svg>
@@ -101,34 +101,35 @@
 
                                 <!-- Entrenamiento -->
                                 @if ($clase->entreno != null)
-                                <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
-                                    <a href="{{ route('entrenos.show', $clase->entreno) }}">
-                                        Entrenamiento
-                                    </a>
+                                <button wire:click="showEntreno({{$clase}})" type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
+                                    {{ $clase->entreno->denominacion }}
                                 </button>
                                 @endif
 
                                 @hasanyrole('admin|coach')
                                 @if ($clase->entreno_id == null)
-                                    <form action="{{ route('clases.addentreno', $clase) }}" method="GET">
-                                        @csrf
-                                        @method('GET')
-                                        <button type="submit" class="inline-flex items-center ml-4 py-2 px-4 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-200 hover:text-gray-700">
+                                    <form wire:submit.prevent="addEntreno({{ $clase->id }})" class="flex">
+                                        <div class="ml-4">
+                                            <select wire:model="entrenoJoin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-gray-500 focus:border-gray-500">
+                                                <option hidden selected>Selecciona entreno</option>
+                                                @foreach ($entrenos as $entreno)
+                                                    <option value="{{ $entreno->id }}">{{ $entreno->denominacion }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <button type="submit" class="inline-flex items-center ml-2 py-2 px-4 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-200 hover:text-gray-700">
                                             <svg aria-hidden="true" class="w-5 h-5 fill-current text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{ route('clases.deleteentreno.update', $clase) }}" method="POST">
-                                        @csrf
-                                        @method('POST')
-                                        <button type="submit" class="inline-flex items-center ml-4 py-2 px-3 text-sm font-medium text-gray-900 bg-red-200 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
-                                            <svg aria-hidden="true" class="w-5 h-5 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <button wire:click="deleteEntreno({{$clase}})" type="submit" class="inline-flex items-center ml-2 py-2 px-3 text-sm font-medium text-gray-900 bg-red-200 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
+                                        <svg aria-hidden="true" class="w-5 h-5 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                                        </svg>
+                                    </button>
                                 @endif
                                 @endhasanyrole
 
@@ -138,7 +139,7 @@
                             <div class="mt-6 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
                                 @foreach ($clase->atletas as $atleta)
                                     <div class="flex -space-x-4 -space-y-2">
-                                        <img class="rounded-2xl" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
+                                        <img wire:click="showUser({{$atleta}})" class="rounded-2xl cursor-pointer" src="{{ $atleta->profile_photo_url }}" alt="{{ $atleta->name }}">
                                         @hasanyrole('admin|coach')
                                             <button wire:click="delete({{ $atleta }}, {{ $clase }})" type="submit" class="w-5 h-5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#fecaca" viewBox="0 0 24 24" stroke-width="1.5" stroke="#991b1b" class="w-7 h-7 hover:fill-red-300">
@@ -198,7 +199,7 @@
                                                 @endforeach
                                             </x-select> --}}
 
-                                            <button type="submit" class="ml-3 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-300 hover:text-gray-700">
+                                            <button type="submit" class="ml-2 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-300 hover:text-gray-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                                 </svg>
@@ -222,6 +223,56 @@
     </div>
 </div>
 
+<x-jet-dialog-modal wire:model="openUser">
+
+    <x-slot name="title">
+    </x-slot>
+
+    <x-slot name="content">
+
+        <div class="flex flex-col items-center">
+            <img class="w-24 h-24 mb-3 rounded-2xl shadow-lg" src="{{ $this->avatar }}" alt="{{ $this->name }}"/>
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $this->name }}</h5>
+            @hasanyrole('admin|coach')
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{ $this->email }}</span>
+            @endhasanyrole
+        </div>
+
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-jet-button wire:click="$set('openUser', false)">
+            Cerrar
+        </x-jet-button>
+    </x-slot>
+
+</x-jet-dialog-modal>
+
+<x-jet-dialog-modal wire:model="openEntreno">
+
+    <x-slot name="title">
+        <div class="flex justify-center text-xl font-bold">
+            {{ $this->denominacion }}
+        </div>
+    </x-slot>
+
+    <x-slot name="content">
+
+        <div class="px-6">
+            {!! $this->entreno !!}
+        </div>
+
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-jet-button wire:click="$set('openEntreno', false)">
+            Cerrar
+        </x-jet-button>
+    </x-slot>
+
+</x-jet-dialog-modal>
+
+
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
@@ -243,4 +294,14 @@
         }
     })
 </script>
+@endsection
+
+@section('select2')
+    <script>
+        document.addEventListener('livewire:load', function(){
+            $('.select2').select2({
+                placeholder: 'Selecciona entreno',
+            });
+        })
+    </script>
 @endsection
