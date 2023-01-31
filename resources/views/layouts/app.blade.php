@@ -63,6 +63,8 @@
 
         @stack('cal')
 
+        @stack('ckeditor')
+
         @isset($js)
             {{ $js }}
         @endisset
