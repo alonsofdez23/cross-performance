@@ -101,10 +101,8 @@
 
                                 <!-- Entrenamiento -->
                                 @if ($clase->entreno != null)
-                                <button type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
-                                    <a href="{{ route('entrenos.show', $clase->entreno) }}">
-                                        Entrenamiento
-                                    </a>
+                                <button wire:click="showEntreno({{$clase}})" type="button" class="inline-flex items-center ml-4 px-3 py-2 text-sm font-medium text-center text-gray-500 bg-gray-200 rounded-md">
+                                    Entrenamiento
                                 </button>
                                 @endif
 
@@ -239,6 +237,30 @@
 
     <x-slot name="footer">
         <x-jet-button wire:click="$set('openUser', false)">
+            Cerrar
+        </x-jet-button>
+    </x-slot>
+
+</x-jet-dialog-modal>
+
+<x-jet-dialog-modal wire:model="openEntreno">
+
+    <x-slot name="title">
+        <div class="flex justify-center text-xl font-bold">
+            {{ $this->denominacion }}
+        </div>
+    </x-slot>
+
+    <x-slot name="content">
+
+        <div class="px-6">
+            {!! $this->entreno !!}
+        </div>
+
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-jet-button wire:click="$set('openEntreno', false)">
             Cerrar
         </x-jet-button>
     </x-slot>

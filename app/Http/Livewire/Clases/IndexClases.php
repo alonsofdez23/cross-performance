@@ -19,6 +19,10 @@ class IndexClases extends Component
 
     public $name, $email, $avatar;
 
+    public $openEntreno = false;
+
+    public $denominacion, $entreno;
+
     protected $queryString = [
         'pickDay',
     ];
@@ -107,6 +111,14 @@ class IndexClases extends Component
         $this->name = $clase->monitor->name;
         $this->email = $clase->monitor->email;
         $this->avatar = $clase->monitor->profile_photo_url;
+    }
+
+    public function showEntreno(Clase $clase)
+    {
+        $this->openEntreno = true;
+
+        $this->denominacion = $clase->entreno->denominacion;
+        $this->entreno = $clase->entreno->entreno;
     }
 
     public function render()
