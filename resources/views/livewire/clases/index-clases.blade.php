@@ -108,17 +108,24 @@
 
                                 @hasanyrole('admin|coach')
                                 @if ($clase->entreno_id == null)
-                                    <form action="{{ route('clases.addentreno', $clase) }}" method="GET">
-                                        @csrf
-                                        @method('GET')
-                                        <button type="submit" class="inline-flex items-center ml-4 py-2 px-4 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-200 hover:text-gray-700">
+                                    <form wire:submit.prevent="addEntreno({{ $clase->id }})" class="flex">
+                                        <div class="ml-4">
+                                            <select wire:model="entrenoJoin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-gray-500 focus:border-gray-500">
+                                                <option hidden selected>Selecciona entreno</option>
+                                                @foreach ($entrenos as $entreno)
+                                                    <option value="{{ $entreno->id }}">{{ $entreno->denominacion }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <button type="submit" class="inline-flex items-center ml-2 py-2 px-4 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-200 hover:text-gray-700">
                                             <svg aria-hidden="true" class="w-5 h-5 fill-current text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                             </svg>
                                         </button>
                                     </form>
                                 @else
-                                    <button wire:click="deleteEntreno({{$clase}})" type="submit" class="inline-flex items-center ml-4 py-2 px-3 text-sm font-medium text-gray-900 bg-red-200 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
+                                    <button wire:click="deleteEntreno({{$clase}})" type="submit" class="inline-flex items-center ml-2 py-2 px-3 text-sm font-medium text-gray-900 bg-red-200 rounded-md border border-gray-200 hover:bg-red-200 hover:text-gray-700">
                                         <svg aria-hidden="true" class="w-5 h-5 fill-current text-red-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                                         </svg>
@@ -192,7 +199,7 @@
                                                 @endforeach
                                             </x-select> --}}
 
-                                            <button type="submit" class="ml-3 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-300 hover:text-gray-700">
+                                            <button type="submit" class="ml-2 inline-flex items-center py-2 px-3 text-sm font-medium text-gray-900 bg-gray-200 rounded-md border border-gray-200 hover:bg-gray-300 hover:text-gray-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                                 </svg>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Clases;
 
 use App\Models\Clase;
+use App\Models\Entreno;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class IndexClases extends Component
 {
     public $pickDay;
     public $atleta;
+    public $entrenoJoin;
 
     public $openUser = false;
 
@@ -95,6 +97,12 @@ class IndexClases extends Component
         } */
     }
 
+    public function addEntreno(Clase $clase)
+    {
+        $clase->entreno_id = $this->entrenoJoin;
+        $clase->save();
+    }
+
     public function deleteEntreno(Clase $clase)
     {
         $clase->entreno_id = null;
@@ -137,6 +145,7 @@ class IndexClases extends Component
         return view('livewire.clases.index-clases', [
             'clases' => $clases,
             'users' => User::all()->sortBy('id'),
+            'entrenos' => Entreno::all(),
         ]);
     }
 }
