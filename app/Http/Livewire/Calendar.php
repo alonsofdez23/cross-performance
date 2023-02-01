@@ -18,6 +18,8 @@ class Calendar extends Component
     public $entreno;
     public $vacantes;
 
+    public $clase;
+
     public function mount()
     {
         if (Clase::latest()->first() != null) {
@@ -63,14 +65,24 @@ class Calendar extends Component
     {
         $clase = Clase::where('idevent', $event['id'])->first();
 
+        $this->clase = $clase;
+
         if ($clase->fecha_hora < Carbon::now()) {
             $this->openOld = true;
         } elseif ($clase->atletas->isNotEmpty()) {
             $this->openAtletas = true;
         } else {
             $clase->delete();
+            $this->emit("refreshCalendar");
         }
+    }
 
+    public function deleteClase()
+    {
+        $this->clase->atletas()->detach();
+        $this->clase->delete();
+
+        $this->openAtletas = false;
         $this->emit("refreshCalendar");
     }
 
