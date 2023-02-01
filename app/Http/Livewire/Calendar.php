@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\DeleteClase;
 use App\Models\Clase;
 use App\Models\Entreno;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class Calendar extends Component
@@ -79,8 +81,14 @@ class Calendar extends Component
 
     public function deleteClase()
     {
-        $this->clase->atletas()->detach();
-        $this->clase->delete();
+        $clase = $this->clase;
+
+        $clase->atletas()->detach();
+        $clase->delete();
+
+        foreach ($clase->atletas as $atleta) {
+            Mail::to($atleta->email)->send(new DeleteClase($clase, $atleta));
+        }
 
         $this->openAtletas = false;
         $this->emit("refreshCalendar");
