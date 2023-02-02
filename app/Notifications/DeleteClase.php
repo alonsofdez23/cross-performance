@@ -16,7 +16,7 @@ class DeleteClase extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public $clase, public $atleta)
+    public function __construct(public $fecha, public $atleta)
     {
         //
     }
@@ -41,7 +41,7 @@ class DeleteClase extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         $name = explode(' ', $this->atleta->name)[0];
-        $fecha = $this->clase->fecha_hora->tz('Europe/Madrid')->format('d/m/Y \a \l\a\s G:i');
+        $fecha = $this->fecha->tz('Europe/Madrid')->format('d/m/Y \a \l\a\s G:i');
 
         return (new MailMessage)
                     ->subject('Clase cancelada')

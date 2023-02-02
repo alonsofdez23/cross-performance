@@ -82,12 +82,14 @@ class Calendar extends Component
     public function deleteClase()
     {
         $clase = $this->clase;
+        $atletasClase = $clase->atletas;
+        $fecha = $clase->fecha_hora;
 
         $clase->atletas()->detach();
         $clase->delete();
 
-        foreach ($clase->atletas as $atleta) {
-            $atleta->notify(new DeleteClase($clase, $atleta));
+        foreach ($atletasClase as $atleta) {
+            $atleta->notify(new DeleteClase($fecha, $atleta));
             //Mail::to($atleta->email)->send(new DeleteClase($clase, $atleta));
         }
 
