@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\VonageMessage;
 use Illuminate\Notifications\Notification;
 
 class DeleteClase extends Notification implements ShouldQueue
@@ -29,7 +30,10 @@ class DeleteClase extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return [
+            'mail',
+            //'vonage',
+        ];
     }
 
     /**
@@ -63,5 +67,14 @@ class DeleteClase extends Notification implements ShouldQueue
         return [
             //
         ];
+    }
+
+    public function toVonage($notifiable)
+    {
+        $name = explode(' ', $this->atleta->name)[0];
+        $fecha = $this->fecha->tz('Europe/Madrid')->format('d/m/Y \a \l\a\s G:i');
+
+        return (new VonageMessage())
+                ->content("¡Hola, $name! Su clase del $fecha ha sido cancelada. Sentimos las molestias. Un saludo, CrossPerformance");
     }
 }
