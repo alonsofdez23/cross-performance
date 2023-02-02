@@ -7,7 +7,7 @@
             Esta clase tiene atletas apuntados
         </div>
         <div class="flex justify-center">
-            ¿Estás seguro que quieres eliminar la clase del {{ $this->clase->fecha_hora->tz('Europe/Madrid')->format('d/m/Y \a \l\a\s G:i') }}?
+            ¿Estás seguro que quieres eliminar la clase del&nbsp;<b>{{ $this->clase->fecha_hora->tz('Europe/Madrid')->format('d/m/Y \a \l\a\s G:i') }}</b>?
         </div>
     </x-slot>
     <x-slot name="content">
