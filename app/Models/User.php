@@ -130,6 +130,17 @@ class User extends Authenticatable
         }));
     }
 
+    /**
+     * Route notifications for the Vonage channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForVonage($notification)
+    {
+        return '34661098997';
+    }
+
     public function adminlte_image() {
         return $this->profile_photo_url;
     }
