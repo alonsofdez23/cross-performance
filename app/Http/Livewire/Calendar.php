@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\DeleteClase;
 use App\Models\Clase;
 use App\Models\Entreno;
 use App\Models\User;
+use App\Notifications\DeleteClase;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -87,7 +87,8 @@ class Calendar extends Component
         $clase->delete();
 
         foreach ($clase->atletas as $atleta) {
-            Mail::to($atleta->email)->send(new DeleteClase($clase, $atleta));
+            $atleta->notify(new DeleteClase($clase, $atleta));
+            //Mail::to($atleta->email)->send(new DeleteClase($clase, $atleta));
         }
 
         $this->openAtletas = false;
