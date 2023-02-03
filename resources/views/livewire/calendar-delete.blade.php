@@ -35,6 +35,9 @@
                 @endforeach
             </ul>
         </div>
+        <div class="flex justify-end pt-4 text-sm italic">
+            *Todos los atletas serán notificados por email.
+        </div>
     </x-slot>
     <x-slot name="footer">
         <x-jet-secondary-button wire:click="$set('openAtletas', false)" class="mr-2">
