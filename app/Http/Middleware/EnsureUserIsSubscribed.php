@@ -16,7 +16,7 @@ class EnsureUserIsSubscribed
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user() && ! $request->user()->subscribed('Full Box')) {
+        if ($request->user() && ! $request->user()->hasRole(['admin', 'coach']) && ! $request->user()->subscribed('Full Box')) {
             // This user is not a paying customer...
             return redirect('billing');
         }
